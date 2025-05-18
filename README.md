@@ -32,6 +32,7 @@ This repository is part of my learning journey to become a professional MERN Sta
 
 🙌 Author
 FarHan Hridoy
+
 Learning MERN Stack Developer
 Follow my progress here and connect with me on GitHub!
 
