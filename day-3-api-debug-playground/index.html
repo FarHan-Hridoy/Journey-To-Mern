@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Islamic Names Explorer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        :root {
+            --primary-color: #1e88e5;
+            --secondary-color: #43a047;
+            --error-color: #e53935;
+            --background-color: #f5f5f5;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --accent-color: #ff9800;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            background-image: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+            min-height: 100vh;
+        }
+
+        .header-container {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .animated-title {
+            font-family: 'Amiri', serif;
+            font-size: 3em;
+            color: var(--primary-color);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            margin: 0;
+            position: relative;
+            display: inline-block;
+        }
+
+        .animated-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            transform: scaleX(0);
+            transform-origin: left;
+            animation: lineGrow 2s ease-in-out infinite;
+        }
+
+        @keyframes lineGrow {
+            0% { transform: scaleX(0); }
+            50% { transform: scaleX(1); }
+            100% { transform: scaleX(0); }
+        }
+
+        .subtitle {
+            color: var(--secondary-color);
+            font-size: 1.2em;
+            margin-top: 10px;
+            opacity: 0;
+            animation: fadeIn 1s ease-out forwards 1s;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        .button-container {
+            text-align: center;
+            margin: 30px 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        #correctBtn {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        #correctBtn:hover {
+            background-color: #2e7d32;
+            transform: translateY(-2px);
+        }
+
+        #brokenBtn {
+            background-color: var(--error-color);
+            color: white;
+        }
+
+        #brokenBtn:hover {
+            background-color: #c62828;
+            transform: translateY(-2px);
+        }
+
+        .user-card {
+            background-color: var(--card-bg);
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .user-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .user-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .user-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+        }
+
+        .user-card h3 {
+            color: var(--primary-color);
+            font-family: 'Amiri', serif;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+            position: relative;
+        }
+
+        .user-card h3::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+
+        .user-card:hover h3::after {
+            width: 100%;
+        }
+
+        .user-card p {
+            margin: 10px 0;
+            line-height: 1.6;
+            transition: transform 0.3s ease;
+        }
+
+        .user-card:hover p {
+            transform: translateX(5px);
+        }
+
+        .user-card strong {
+            color: var(--secondary-color);
+            transition: color 0.3s ease;
+        }
+
+        .user-card:hover strong {
+            color: var(--accent-color);
+        }
+
+        .error-message {
+            background-color: #ffebee;
+            color: var(--error-color);
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border-left: 5px solid var(--error-color);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            animation: shake 0.5s ease-in-out;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        .loading {
+            text-align: center;
+            margin: 30px;
+            display: none;
+        }
+
+        .loading::after {
+            content: '';
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .status-info {
+            background-color: #e3f2fd;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            font-family: monospace;
+            border: 1px solid var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        .status-info:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .arabic-text {
+            font-family: 'Amiri', serif;
+            font-size: 1.2em;
+            color: var(--primary-color);
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .search-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .search-input {
+            padding: 10px 20px;
+            width: 300px;
+            border: 2px solid var(--primary-color);
+            border-radius: 25px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            box-shadow: 0 0 10px rgba(30,136,229,0.3);
+            width: 350px;
+        }
+
+        @media (max-width: 768px) {
+            .button-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            button {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .search-input {
+                width: 90%;
+                max-width: 300px;
+            }
+
+            .search-input:focus {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header-container">
+        <h1 class="animated-title animate__animated animate__fadeInDown">Islamic Names Explorer</h1>
+        <p class="subtitle">Discover and explore beautiful Islamic names</p>
+    </div>
+    
+    <div class="search-container">
+        <input type="text" class="search-input" placeholder="Search names..." id="searchInput">
+    </div>
+
+    <div class="button-container">
+        <button id="correctBtn" onclick="loadUsers(true)" class="animate__animated animate__fadeInLeft">Load Correct API</button>
+        <button id="brokenBtn" onclick="loadUsers(false)" class="animate__animated animate__fadeInRight">Load Broken API</button>
+    </div>
+
+    <div class="loading" id="loading"></div>
+    <div id="status-info" class="status-info"></div>
+    <div id="user-container" class="container"></div>
+
+    <script src="app.js"></script>
+</body>
+</html> 
