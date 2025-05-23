@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Islamic History Blog</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>📚 Islamic History Blog</h1>
+        
+        <!-- Create Post Form -->
+        <div class="create-post">
+            <h2>Share Islamic History</h2>
+            <form id="post-form">
+                <input type="text" id="title" placeholder="Historical Event Title" required>
+                <textarea id="body" placeholder="Share the historical details..." required></textarea>
+                <button type="submit" class="btn create-btn">Share History</button>
+            </form>
+        </div>
+
+        <!-- Loading Spinner -->
+        <div id="loader" class="loader hidden"></div>
+
+        <!-- Posts Container -->
+        <div id="post-container" class="posts-grid">
+            <!-- Posts will be dynamically added here -->
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
