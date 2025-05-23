@@ -44,6 +44,45 @@ This repository contains a series of daily projects that demonstrate the progres
   - Modern UI/UX implementation
   - Responsive design with animations
 
+### Day 4: CRUD Operations
+- **Features:**
+  - Islamic History Explorer
+  - Full CRUD functionality
+  - Data persistence with Local Storage
+  - Responsive UI with animations
+- **Technical Highlights:**
+  - CRUD operations implementation
+  - Data validation
+  - State management
+  - Modern UI components
+
+### Day 5: Async/Await Implementation
+- **Features:**
+  - Random User Dashboard
+  - Async data loading
+  - Loading states and animations
+  - Error handling with try/catch
+- **Technical Highlights:**
+  - Async/Await syntax
+  - Promise handling
+  - Event Loop understanding
+  - Modern error handling
+
+### Day 6: Advanced Async Dashboard
+- **Features:**
+  - Career Development Dashboard
+  - Real-time clock with setInterval
+  - Animated UI components
+  - Professional profile display
+  - Modern glassmorphism design
+- **Technical Highlights:**
+  - Advanced CSS animations
+  - Event Loop visualization
+  - Microtasks and Macrotasks
+  - Modern UI/UX principles
+  - Responsive grid layout
+  - Glassmorphism effects
+
 ## 🛠️ Technology Stack
 
 ### Frontend
@@ -61,16 +100,25 @@ This repository contains a series of daily projects that demonstrate the progres
 
 ## 🎨 Project Structure
 
+```
+journey-to-mern/
+├── day-1-dom-api-practice/
+├── day-2-random-user/
+├── day-3-api-debug-playground/
+├── day-4-crud-operations/
+├── day-5-async-await/
+└── day-6-async-dashboard/
+```
 
 ## 🚀 Upcoming Modules
 
-### Day 4: React Fundamentals
+### Day 7: React Fundamentals
 - Component-based architecture
 - State management
 - React Hooks
 - Modern React practices
 
-### Day 5+: Full Stack Development
+### Day 8+: Full Stack Development
 - Node.js backend implementation
 - MongoDB database integration
 - Express.js API development
