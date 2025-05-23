@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD Blog App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>📝 Blog Posts</h1>
+        
+        <!-- Create Post Form -->
+        <div class="create-post">
+            <h2>Create New Post</h2>
+            <form id="post-form">
+                <input type="text" id="title" placeholder="Post title" required>
+                <textarea id="body" placeholder="Post content" required></textarea>
+                <button type="submit" class="btn create-btn">Create Post</button>
+            </form>
+        </div>
+
+        <!-- Loading Spinner -->
+        <div id="loader" class="loader hidden"></div>
+
+        <!-- Posts Container -->
+        <div id="post-container" class="posts-grid">
+            <!-- Posts will be dynamically added here -->
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
