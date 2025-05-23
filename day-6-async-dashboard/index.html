@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Async Profile Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>User Dashboard</h1>
+            <div id="clock" class="clock">🕒 Loading Time...</div>
+        </header>
+
+        <main>
+            <div id="loader" class="loader">⏳ Loading data...</div>
+            
+            <div class="dashboard-grid">
+                <section id="user" class="user-card">
+                    <!-- User data will be loaded here -->
+                </section>
+
+                <section id="tasks" class="tasks-card">
+                    <!-- Tasks will be loaded here -->
+                </section>
+            </div>
+
+            <button id="retry-btn" class="retry-btn" style="display: none;">
+                Retry Loading Data
+            </button>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
