@@ -23,47 +23,61 @@ setTimeout(() => {
     loaderElement.innerText = "✅ Loaded!";
 }, 2000);
 
+// Custom user data
+const userData = {
+    name: "Farhan Hridoy",
+    email: "farhan.hridoy@example.com",
+    city: "Dhaka",
+    company: "Tech Solutions Inc.",
+    role: "Software Engineer",
+    skills: ["JavaScript", "React", "Node.js", "MongoDB", "Express"],
+    experience: "2+ years",
+    education: "BSc in Computer Science"
+};
+
+// Custom software engineering tasks
+const engineeringTasks = [
+    { title: "Complete MERN Stack Portfolio Project", completed: true },
+    { title: "Implement RESTful API endpoints", completed: true },
+    { title: "Write unit tests for authentication module", completed: false },
+    { title: "Optimize database queries", completed: false },
+    { title: "Code review for frontend components", completed: true },
+    { title: "Deploy application to production", completed: false },
+    { title: "Update LinkedIn profile with new projects", completed: false },
+    { title: "Prepare for technical interviews", completed: false }
+];
+
 // Async function to load user and tasks
 async function loadDashboard() {
     console.log("loadDashboard called - New Execution Context created");
     
     try {
-        console.log("📤 Fetching data - Call stack non-blocking...");
-        console.log("Promise.all creates multiple microtasks");
+        console.log("📤 Loading data - Call stack non-blocking...");
         
-        // Using Promise.all to load multiple API endpoints concurrently
-        const [userRes, tasksRes] = await Promise.all([
-            fetch("https://jsonplaceholder.typicode.com/users/1"),
-            fetch("https://jsonplaceholder.typicode.com/todos?userId=1")
-        ]);
+        // Simulate API delay
+        await new Promise(resolve => setTimeout(resolve, 1000));
 
-        console.log("API responses received - Microtasks completed");
-
-        if (!userRes.ok || !tasksRes.ok) {
-            throw new Error("Failed to load data");
-        }
-
-        // Parse JSON responses
-        const user = await userRes.json();
-        const tasks = await tasksRes.json();
-
-        console.log("Data parsed - Ready to update DOM");
+        console.log("Data loaded - Ready to update DOM");
 
         // Update user information
         userElement.innerHTML = `
-            <h2>👤 ${user.name}</h2>
-            <p>📧 ${user.email}</p>
-            <p>📍 ${user.address.city}</p>
-            <p>🏢 ${user.company.name}</p>
+            <h2>👤 ${userData.name}</h2>
+            <p>📧 ${userData.email}</p>
+            <p>📍 ${userData.city}</p>
+            <p>🏢 ${userData.company}</p>
+            <p>💻 ${userData.role}</p>
+            <p>⭐ Experience: ${userData.experience}</p>
+            <p>🎓 ${userData.education}</p>
+            <p>🛠️ Skills: ${userData.skills.join(", ")}</p>
         `;
 
         // Update tasks
-        const taskHTML = tasks.slice(0, 5).map(t =>
+        const taskHTML = engineeringTasks.map(t =>
             `<li>${t.completed ? "✅" : "❌"} ${t.title}</li>`
         ).join("");
         
         tasksElement.innerHTML = `
-            <h3>📝 Top Tasks:</h3>
+            <h3>📝 Career Development Tasks:</h3>
             <ul>${taskHTML}</ul>
         `;
 
