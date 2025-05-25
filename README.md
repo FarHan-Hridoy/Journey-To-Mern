@@ -122,7 +122,7 @@ This repository contains a series of daily projects that demonstrate the progres
   - Promise States
   - Chain Visualization
 
-### Day 10: Repeating Task Manager
+### Day 10: Timer
 - **Features:**
   - Multiple Timer Modes (Countdown, Stopwatch, Pomodoro)
   - Task Completion Tracking
@@ -163,7 +163,7 @@ journey-to-mern/
 ├── day-7-javascript-engine-and-execution-context/
 ├── day-8-event-loop-playground/
 ├── day-9-promises-async-await/
-└── day-10-repeating-task-manager/
+└── day-10-timer/
 ```
 
 ## 🚀 Upcoming Modules
