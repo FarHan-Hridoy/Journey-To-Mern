@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Promises & Async/Await Playground</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+
+        .code-preview {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            margin: 10px 0;
+            overflow-x: auto;
+        }
+
+        .output {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            margin-top: 10px;
+            min-height: 200px;
+            white-space: pre-wrap;
+        }
+
+        button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: #2980b9;
+        }
+
+        button:disabled {
+            background: #bdc3c7;
+            cursor: not-allowed;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #3498db;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-left: 10px;
+            vertical-align: middle;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .user-card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .user-card img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        .user-info {
+            margin-top: 10px;
+        }
+
+        .user-info p {
+            margin: 5px 0;
+        }
+
+        .error {
+            color: #e74c3c;
+            background: #fde8e8;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Promises & Async/Await Playground</h1>
+    
+    <div class="container">
+        <div class="card">
+            <h2>Promise Implementation</h2>
+            <div class="code-preview">
+<pre>function loadDataWithPromise() {
+    return fetch("https://randomuser.me/api/")
+        .then(res => res.json())
+        .then(data => data.results[0])
+        .catch(err => {
+            throw new Error("Failed to fetch: " + err.message);
+        });
+}</pre>
+            </div>
+            <button onclick="loadDataWithPromise()">Fetch with Promise</button>
+            <div id="promiseOutput" class="output"></div>
+        </div>
+
+        <div class="card">
+            <h2>Async/Await Implementation</h2>
+            <div class="code-preview">
+<pre>async function loadDataWithAsync() {
+    try {
+        const res = await fetch("https://randomuser.me/api/");
+        const data = await res.json();
+        return data.results[0];
+    } catch (err) {
+        throw new Error("Failed to fetch: " + err.message);
+    }
+}</pre>
+            </div>
+            <button onclick="loadDataWithAsync()">Fetch with Async/Await</button>
+            <div id="asyncOutput" class="output"></div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>User Details</h2>
+        <div id="userCard" class="user-card" style="display: none;">
+            <img id="userImage" src="" alt="User">
+            <div class="user-info">
+                <p><strong>Name:</strong> <span id="userName"></span></p>
+                <p><strong>Email:</strong> <span id="userEmail"></span></p>
+                <p><strong>Location:</strong> <span id="userLocation"></span></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const promiseOutput = document.getElementById("promiseOutput");
+        const asyncOutput = document.getElementById("asyncOutput");
+        const userCard = document.getElementById("userCard");
+        const userImage = document.getElementById("userImage");
+        const userName = document.getElementById("userName");
+        const userEmail = document.getElementById("userEmail");
+        const userLocation = document.getElementById("userLocation");
+
+        function showLoading(element) {
+            element.innerHTML = '<div class="loading"></div> Loading...';
+        }
+
+        function showError(element, message) {
+            element.innerHTML = `<div class="error">${message}</div>`;
+        }
+
+        function displayUser(user) {
+            userCard.style.display = 'block';
+            userImage.src = user.picture.large;
+            userName.textContent = `${user.name.first} ${user.name.last}`;
+            userEmail.textContent = user.email;
+            userLocation.textContent = `${user.location.city}, ${user.location.country}`;
+        }
+
+        function loadDataWithPromise() {
+            showLoading(promiseOutput);
+            fetch("https://randomuser.me/api/")
+                .then(res => res.json())
+                .then(data => {
+                    const user = data.results[0];
+                    promiseOutput.textContent = JSON.stringify(user, null, 2);
+                    displayUser(user);
+                })
+                .catch(err => {
+                    showError(promiseOutput, err.message);
+                });
+        }
+
+        async function loadDataWithAsync() {
+            showLoading(asyncOutput);
+            try {
+                const res = await fetch("https://randomuser.me/api/");
+                const data = await res.json();
+                const user = data.results[0];
+                asyncOutput.textContent = JSON.stringify(user, null, 2);
+                displayUser(user);
+            } catch (err) {
+                showError(asyncOutput, err.message);
+            }
+        }
+    </script>
+</body>
+</html> 

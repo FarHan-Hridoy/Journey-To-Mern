@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript Call Stack Visualizer</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .container {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .stack-container {
+            flex: 1;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+
+        .controls {
+            flex: 1;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+
+        #stack {
+            min-height: 300px;
+            border: 2px solid #3498db;
+            border-radius: 4px;
+            padding: 10px;
+            background: #f8f9fa;
+        }
+
+        .frame {
+            margin: 8px 0;
+            padding: 10px;
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .frame.push {
+            animation: slideIn 0.5s ease-out;
+        }
+
+        .frame.pop {
+            animation: slideOut 0.5s ease-out;
+        }
+
+        .frame.current {
+            background: #bbdefb;
+            border-left-color: #1976d2;
+        }
+
+        .frame-info {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: #2980b9;
+        }
+
+        button:disabled {
+            background: #bdc3c7;
+            cursor: not-allowed;
+        }
+
+        .code-preview {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 20px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideOut {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>JavaScript Call Stack Visualizer</h1>
+    
+    <div class="container">
+        <div class="stack-container">
+            <h2>Call Stack</h2>
+            <div id="stack"></div>
+        </div>
+        
+        <div class="controls">
+            <h2>Controls</h2>
+            <button onclick="startDemo()">Start Demo</button>
+            <button onclick="resetDemo()">Reset</button>
+            <button onclick="stepThrough()">Step Through</button>
+            
+            <div class="code-preview">
+                <pre>
+function first() {
+    console.log('First function');
+    second();
+}
+
+function second() {
+    console.log('Second function');
+    third();
+}
+
+function third() {
+    console.log('Third function');
+}
+
+first();</pre>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const stackEl = document.getElementById("stack");
+        let currentStep = 0;
+        let isRunning = false;
+        let frames = [];
+
+        function updateStack(name, isPush, variables = {}) {
+            const frame = document.createElement("div");
+            frame.className = `frame ${isPush ? 'push' : 'pop'}`;
+            
+            const frameContent = document.createElement("div");
+            frameContent.textContent = `${isPush ? "→" : "←"} ${name}`;
+            frame.appendChild(frameContent);
+
+            if (isPush) {
+                const frameInfo = document.createElement("div");
+                frameInfo.className = "frame-info";
+                frameInfo.textContent = `Variables: ${JSON.stringify(variables)}`;
+                frame.appendChild(frameInfo);
+                frames.push(frame);
+            } else {
+                frames.pop();
+            }
+
+            // Update current frame highlighting
+            frames.forEach(f => f.classList.remove('current'));
+            if (frames.length > 0) {
+                frames[frames.length - 1].classList.add('current');
+            }
+
+            if (isPush) {
+                stackEl.appendChild(frame);
+            } else {
+                frame.addEventListener('animationend', () => {
+                    frame.remove();
+                });
+            }
+        }
+
+        function first() {
+            updateStack("first", true, { x: 1 });
+            second();
+            updateStack("first", false);
+        }
+
+        function second() {
+            updateStack("second", true, { y: 2 });
+            third();
+            updateStack("second", false);
+        }
+
+        function third() {
+            updateStack("third", true, { z: 3 });
+            updateStack("third", false);
+        }
+
+        function startDemo() {
+            if (!isRunning) {
+                isRunning = true;
+                resetDemo();
+                first();
+                isRunning = false;
+            }
+        }
+
+        function resetDemo() {
+            stackEl.innerHTML = '';
+            frames = [];
+            currentStep = 0;
+        }
+
+        function stepThrough() {
+            if (!isRunning) {
+                isRunning = true;
+                const steps = [
+                    () => updateStack("first", true, { x: 1 }),
+                    () => updateStack("second", true, { y: 2 }),
+                    () => updateStack("third", true, { z: 3 }),
+                    () => updateStack("third", false),
+                    () => updateStack("second", false),
+                    () => updateStack("first", false)
+                ];
+
+                if (currentStep < steps.length) {
+                    steps[currentStep]();
+                    currentStep++;
+                } else {
+                    resetDemo();
+                }
+                isRunning = false;
+            }
+        }
+    </script>
+</body>
+</html> 
