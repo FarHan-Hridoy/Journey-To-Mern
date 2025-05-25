@@ -83,7 +83,59 @@ This repository contains a series of daily projects that demonstrate the progres
   - Responsive grid layout
   - Glassmorphism effects
 
-## 🛠️ Technology Stack
+### Day 7: JavaScript Engine & Execution Context
+- **Features:**
+  - JavaScript Engine Visualization
+  - Execution Context Explorer
+  - Call Stack Demonstrator
+  - Memory Management Visualizer
+- **Technical Highlights:**
+  - JavaScript Engine Architecture
+  - Execution Context Understanding
+  - Memory Management
+  - Call Stack Operations
+  - Scope Chain Visualization
+
+### Day 8: Event Loop Playground
+- **Features:**
+  - Event Loop Visualizer
+  - Task Queue Demonstrator
+  - Microtask Queue Explorer
+  - Callback Queue Visualizer
+- **Technical Highlights:**
+  - Event Loop Mechanics
+  - Task Queue Management
+  - Microtask Priority
+  - Asynchronous Operations
+  - Queue Visualization
+
+### Day 9: Promises & Async/Await Playground
+- **Features:**
+  - Promise Chain Visualizer
+  - Async/Await Demonstrator
+  - Error Handling Explorer
+  - Promise States Visualizer
+- **Technical Highlights:**
+  - Promise Implementation
+  - Async/Await Syntax
+  - Error Handling
+  - Promise States
+  - Chain Visualization
+
+### Day 10: Repeating Task Manager
+- **Features:**
+  - Multiple Timer Modes (Countdown, Stopwatch, Pomodoro)
+  - Task Completion Tracking
+  - Progress Visualization
+  - Custom Time Input
+- **Technical Highlights:**
+  - setInterval Implementation
+  - Timer State Management
+  - Task Management
+  - Progress Tracking
+  - Mode Switching
+
+## ��️ Technology Stack
 
 ### Frontend
 - HTML5
@@ -107,18 +159,16 @@ journey-to-mern/
 ├── day-3-api-debug-playground/
 ├── day-4-crud-operations/
 ├── day-5-async-await/
-└── day-6-async-dashboard/
+├── day-6-async-dashboard/
+├── day-7-javascript-engine-and-execution-context/
+├── day-8-event-loop-playground/
+├── day-9-promises-async-await/
+└── day-10-repeating-task-manager/
 ```
 
 ## 🚀 Upcoming Modules
 
-### Day 7: React Fundamentals
-- Component-based architecture
-- State management
-- React Hooks
-- Modern React practices
-
-### Day 8+: Full Stack Development
+### Day 11+: Full Stack Development
 - Node.js backend implementation
 - MongoDB database integration
 - Express.js API development
