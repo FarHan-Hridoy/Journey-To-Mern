@@ -1,424 +1,586 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JavaScript & MERN Stack Journey Summary</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 20px;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            color: #333;
-            min-height: 100vh;
-            animation: fadeInBackground 1s ease-in-out;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MERN Stack Learning Summary</title>
+  <style>
+    :root[data-theme="light"] {
+      --bg-color: #f8f8f2;
+      --text-color: #282a36;
+      --card-bg: #ffffff;
+      --card-border: #e0e0e0;
+      --accent-color: #ff79c6;
+      --secondary-color: #8be9fd;
+      --code-bg: #f1f1f1;
+      --code-color: #333;
+    }
 
-        @keyframes fadeInBackground {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
+    :root[data-theme="dark"] {
+      --bg-color: #1e1e2f;
+      --text-color: #f8f8f2;
+      --card-bg: #282a36;
+      --card-border: #44475a;
+      --accent-color: #ff79c6;
+      --secondary-color: #8be9fd;
+      --code-bg: #282a36;
+      --code-color: #f1fa8c;
+    }
 
-        .container {
-            max-width: 800px;
-            margin: 20px auto;
-            background: #fff;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-            opacity: 0; /* Initial state for animation */
-            animation: slideInContainer 0.8s ease-out forwards;
-            animation-delay: 0.5s;
-        }
+    body {
+      background: var(--bg-color);
+      font-family: Arial, sans-serif;
+      color: var(--text-color);
+      padding: 40px;
+      line-height: 1.6;
+      transition: background-color 0.3s, color 0.3s;
+    }
 
-        @keyframes slideInContainer {
-            from { transform: translateY(20px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
+    .theme-switch-wrapper {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      align-items: center;
+      z-index: 100;
+    }
 
-        h1,
-        h2,
-        h3 {
-            color: #3498db;
-            margin-bottom: 15px;
-            animation: fadeInText 1s ease-in-out;
-        }
+    .theme-switch {
+      display: inline-block;
+      height: 34px;
+      position: relative;
+      width: 60px;
+    }
 
-        @keyframes fadeInText {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
+    .theme-switch input {
+      display: none;
+    }
 
-        h1 {
-            text-align: center;
-            margin-bottom: 30px;
-            font-size: 2.5em;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-        }
+    .slider {
+      background-color: #ccc;
+      bottom: 0;
+      cursor: pointer;
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+      transition: .4s;
+      border-radius: 34px;
+    }
 
-        h2 {
-            border-bottom: 2px solid #eee;
-            padding-bottom: 8px;
-            margin-top: 35px;
-            font-size: 1.8em;
-        }
+    .slider:before {
+      background-color: #fff;
+      bottom: 4px;
+      content: "";
+      height: 26px;
+      left: 4px;
+      position: absolute;
+      transition: .4s;
+      width: 26px;
+      border-radius: 50%;
+    }
 
-        h3 {
-            margin-top: 25px;
-            margin-bottom: 12px;
-            font-size: 1.4em;
-            color: #2c3e50;
-        }
+    input:checked + .slider {
+      background-color: #66bb6a;
+    }
 
-        p {
-            margin-bottom: 15px;
-        }
+    input:checked + .slider:before {
+      transform: translateX(26px);
+    }
 
-        ul {
-            margin-bottom: 15px;
-            padding-left: 25px;
-            list-style-type: disc;
-        }
+    .slider-icon {
+      margin: 0 10px;
+      font-size: 20px;
+    }
 
-        li {
-            margin-bottom: 10px;
-            opacity: 0; /* Initial state for animation */
-            animation: fadeInListItem 0.6s ease-out forwards;
-        }
+    .container {
+      max-width: 900px;
+      margin: auto;
+    }
 
-        @keyframes fadeInListItem {
-            from { opacity: 0; transform: translateX(-10px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
+    h1 {
+      font-size: 2.5em;
+      text-align: center;
+      color: var(--accent-color);
+      margin-bottom: 30px;
+    }
 
-        li:nth-child(1) { animation-delay: 1s; }
-        li:nth-child(2) { animation-delay: 1.2s; }
-        li:nth-child(3) { animation-delay: 1.4s; }
-        li:nth-child(4) { animation-delay: 1.6s; }
-        li:nth-child(5) { animation-delay: 1.8s; }
-        li:nth-child(6) { animation-delay: 2.0s; }
-        li:nth-child(7) { animation-delay: 2.2s; }
-        li:nth-child(8) { animation-delay: 2.4s; }
-        li:nth-child(9) { animation-delay: 2.6s; }
-        li:nth-child(10) { animation-delay: 2.8s; }
-        /* Add more delays if you have more list items per section */
+    h2 {
+      color: var(--accent-color);
+      border-bottom: 2px solid var(--card-border);
+      padding-bottom: 5px;
+      margin-top: 40px;
+    }
 
-        strong {
-            color: #2c3e50;
-            font-weight: 600;
-        }
+    h3 {
+      color: var(--secondary-color);
+      margin-top: 20px;
+    }
 
-        a {
-            color: #3498db;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
+    ul {
+      list-style-type: disc;
+      margin-left: 20px;
+    }
 
-        a:hover {
-            text-decoration: underline;
-            color: #2980b9;
-        }
+    pre {
+      background: var(--code-bg);
+      padding: 10px;
+      border-radius: 6px;
+      overflow-x: auto;
+    }
 
-        code {
-            background-color: #eef;
-            padding: 2px 4px;
-            border-radius: 4px;
-            font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
-            font-size: 0.9em;
-        }
+    code {
+      color: var(--code-color);
+    }
 
-        pre {
-            background-color: #eef;
-            padding: 15px;
-            border-radius: 8px;
-            overflow-x: auto;
-            margin-top: 15px;
-            margin-bottom: 15px;
-        }
+    .notes, .resources {
+      background: var(--card-bg);
+      padding: 20px;
+      margin-top: 40px;
+      border-radius: 8px;
+      border: 1px solid var(--card-border);
+    }
 
-        .notes,
-        .resources {
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid #eee;
-            animation: fadeInSection 1s ease-in-out forwards;
-            opacity: 0; /* Initial state for animation */
-        }
+    a {
+      color: var(--accent-color);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
 
-        .notes { animation-delay: 3s; }
-        .resources { animation-delay: 3.2s; }
+    a:hover {
+      color: var(--secondary-color);
+    }
 
-        @keyframes fadeInSection {
-            from { opacity: 0; transform: translateY(15px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+    .day-content {
+      background: var(--card-bg);
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 30px;
+      border: 1px solid var(--card-border);
+      transition: background-color 0.3s, border-color 0.3s;
+    }
 
-        .resources h2 {
-            border-bottom: none;
-        }
+    .feature-list {
+      background: var(--card-bg);
+      padding: 15px;
+      border-radius: 6px;
+      margin: 10px 0;
+      border: 1px solid var(--card-border);
+    }
 
-        .resources ul {
-            list-style-type: circle;
-        }
+    .youtube-link {
+      display: inline-block;
+      background: #ff0000;
+      color: white;
+      padding: 8px 15px;
+      border-radius: 4px;
+      margin: 10px 0;
+      text-decoration: none;
+    }
 
-        @media (max-width: 600px) {
-            body {
-                padding: 10px;
-            }
+    .youtube-link:hover {
+      background: #cc0000;
+    }
 
-            .container {
-                padding: 20px;
-                margin: 10px auto;
-            }
+    .concept-image {
+      font-size: 100px;
+      text-align: center;
+      margin: 20px 0;
+      padding: 20px;
+      background: #44475a;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
 
-            h1 {
-                font-size: 2em;
-            }
+    .icon-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin: 20px 0;
+    }
 
-            h2 {
-                font-size: 1.5em;
-            }
+    .icon-item {
+      font-size: 40px;
+      padding: 15px;
+      background: #44475a;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
 
-            h3 {
-                font-size: 1.2em;
-            }
-        }
-    </style>
+    /* Animation styles */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .container > * {
+      animation: fadeIn 0.7s ease forwards;
+      opacity: 0;
+    }
+
+    .container > *:nth-child(1) { animation-delay: 0.2s; }
+    .container > *:nth-child(2) { animation-delay: 0.3s; }
+    .container > *:nth-child(3) { animation-delay: 0.4s; }
+    .container > *:nth-child(4) { animation-delay: 0.5s; }
+    .container > *:nth-child(5) { animation-delay: 0.6s; }
+    .container > *:nth-child(6) { animation-delay: 0.7s; }
+    .container > *:nth-child(7) { animation-delay: 0.8s; }
+    .container > *:nth-child(8) { animation-delay: 0.9s; }
+    .container > *:nth-child(9) { animation-delay: 1.0s; }
+    .container > *:nth-child(10) { animation-delay: 1.1s; }
+    .container > *:nth-child(11) { animation-delay: 1.2s; }
+    .container > *:nth-child(12) { animation-delay: 1.3s; }
+
+    .books {
+      background: var(--card-bg);
+      padding: 20px;
+      margin-top: 40px;
+      border-radius: 8px;
+      border: 1px solid var(--card-border);
+    }
+
+    .book-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .book-card {
+      background: var(--card-bg);
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      border: 1px solid var(--card-border);
+    }
+
+    .book-card h3 {
+      color: var(--accent-color);
+      margin: 0 0 10px 0;
+    }
+
+    .book-card p {
+      color: var(--secondary-color);
+      margin: 0 0 15px 0;
+    }
+
+    .book-features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 15px 0;
+    }
+
+    .book-features span {
+      background: var(--code-bg);
+      padding: 5px 10px;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+
+    .book-link {
+      display: inline-block;
+      background: var(--accent-color);
+      color: var(--bg-color);
+      padding: 8px 15px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    .book-link:hover {
+      background: var(--secondary-color);
+    }
+
+    .subtitle {
+      text-align: center;
+      color: var(--secondary-color);
+      font-size: 1.2em;
+      margin-top: -20px;
+      margin-bottom: 40px;
+      font-style: italic;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>JavaScript & MERN Stack Journey Summary: Day 1-9.10</h1>
+  <div class="theme-switch-wrapper">
+    <span class="slider-icon">🌙</span>
+    <label class="theme-switch">
+      <input type="checkbox" id="theme-toggle">
+      <span class="slider"></span>
+    </label>
+    <span class="slider-icon">☀️</span>
+  </div>
 
-        <p>Welcome to a summary of the key concepts and projects from Day 1 to Day 9.10 of the Journey to MERN Stack Development. This overview highlights the fundamental JavaScript and web development topics explored, providing a quick reference for your learning journey.</p>
+  <div class="container">
+    <h1>JavaScript Mastery: A Project-Based Learning Journey</h1>
+    <p class="subtitle">From Fundamentals to Advanced Concepts: 9 Days of Hands-on Projects</p>
 
-        <h2>Day 1: DOM & API Fundamentals</h2>
-        <p>Exploring the building blocks of web interaction and data fetching.</p>
-        <h3>Important Topics & Concepts:</h3>
+    <div class="day-content">
+      <h2>Day 1: Interactive Todo List</h2>
+      <p>Learned about DOM manipulation, event handling, and dynamically updating the UI with JavaScript.</p>
+      <div class="concept-image">📝</div>
+      <div class="icon-container">
+        <div class="icon-item">✅</div>
+        <div class="icon-item">❌</div>
+        <div class="icon-item">📋</div>
+      </div>
+      <div class="feature-list">
+        <h3>Key Features:</h3>
         <ul>
-            <li>
-                <strong>Asynchronous JavaScript with <code>fetch()</code>:</strong>
-                Understanding how to make non-blocking requests to external APIs to retrieve data.
-            </li>
+          <li>Used <code>document.querySelector</code> and <code>addEventListener</code></li>
+          <li>Created tasks, marked them as complete, and deleted them</li>
+          <li>Focused on creating a dynamic user interface</li>
+          <li>Implemented local storage for data persistence</li>
+          <li>Added task filtering and sorting capabilities</li>
         </ul>
-        <pre><code>
-fetch('https://api.example.com/data')
-  .then(response => response.json())
-  .then(data => {
-    console.log(data);
-  })
-  .catch(error => {
-    console.error('Error fetching data:', error);
-  });
-        </code></pre>
-        <ul>
-            <li>
-                <strong>DOM manipulation and dynamic content rendering:</strong>
-                Learning to select, create, modify, and remove HTML elements using JavaScript to update the web page content dynamically.
-            </li>
-            <li>
-                <strong>Event handling and user interactions:</strong>
-                Attaching event listeners to respond to user actions like clicks, key presses, form submissions, etc.
-            </li>
-            <li>
-                <strong>Basic error handling and data validation:</strong>
-                Implementing checks to ensure data is in the expected format and handling potential issues during API calls or data processing gracefully.
-            </li>
-        </ul>
-        <h3>Key Technologies:</h3>
-        <ul>
-            <li>Vanilla JavaScript (focus on core language features)</li>
-            <li>HTML5 (semantic structure)</li>
-            <li>CSS3 (basic styling)</li>
-            <li>RESTful APIs (consuming data)</li>
-        </ul>
-
-        <h2>Day 2: Random User Explorer</h2>
-        <p>Building a user interface to display data fetched from an external API.</p>
-        <h3>Features:</h3>
-        <ul>
-            <li>Integration with Random User API: Fetching random user data.</li>
-            <li>Responsive card-based user interface: Displaying user information in a clean, adaptable layout.</li>
-            <li>Modal-based detailed user information: Showing more details in a pop-up window on click.</li>
-            <li>Search and filter functionality: Allowing users to find specific users based on criteria.</li>
-        </ul>
-        <h3>Technical Highlights:</h3>
-        <ul>
-            <li>Advanced DOM manipulation for complex layouts.</li>
-            <li>Introduction to Object-oriented JavaScript principles.</li>
-            <li>Efficient event handling using Event Delegation.</li>
-            <li>Implementing Responsive Design using CSS media queries.</li>
-        </ul>
-
-        <h2>Day 3: API Debug Playground</h2>
-        <p>Focusing on robust API interaction and error management.</p>
-        <h3>Features:</h3>
-        <ul>
-            <li>Islamic Names Explorer with enhanced UI: A visually improved application.</li>
-            <li>Real-time search functionality: Filtering results as the user types.</li>
-            <li>Animated user interface: Adding smooth transitions and animations for a better user experience.</li>
-            <li>Comprehensive error handling: Gracefully managing various API response statuses and network issues.</li>
-        </ul>
-        <h3>Technical Highlights:</h3>
-        <ul>
-            <li>Advanced error handling techniques in asynchronous operations.</li>
-            <li>Handling different HTTP status codes.</li>
-            <li>Implementing modern UI/UX patterns with CSS.</li>
-            <li>Integrating responsive design with animations.</li>
-        </ul>
-
-        <h2>Day 4: CRUD Operations</h2>
-        <p>Learning the fundamental operations for managing data.</p>
-        <h3>Features:</h3>
-        <ul>
-            <li>Islamic History Explorer: Application focused on historical data.</li>
-            <li>Full CRUD functionality: Implementing Create, Read, Update, and Delete operations.</li>
-            <li>Data persistence with Local Storage: Saving data locally in the browser so it persists between sessions.</li>
-            <li>Responsive UI with animations: Ensuring the application looks good and is engaging on different devices.</li>
-        </ul>
-        <h3>Technical Highlights:</h3>
-        <ul>
-            <li>Implementing CRUD operations logic.</li>
-            <li>Client-side Data Validation before saving or updating.</li>
-            <li>Basic State Management for application data.</li>
-            <li>Using modern UI components and CSS techniques.</li>
-        </ul>
-
-        <h2>Day 5: Async/Await Implementation</h2>
-        <p>Simplifying asynchronous code with modern syntax.</p>
-        <h3>Features:</h3>
-        <ul>
-            <li>Random User Dashboard: A dashboard-style application.</li>
-            <li>Async data loading: Fetching data asynchronously using `async`/`await`.</li>
-        </ul>
-         <pre><code>
-async function fetchData() {
-  try {
-    const response = await fetch('https://api.example.com/data');
-    const data = await response.json();
-    console.log(data);
-  } catch (error) {
-    console.error('Error fetching data:', error);
-  }
-}
-
-fetchData();
-        </code></pre>
-        <ul>
-            <li>Loading states and animations: Providing visual feedback while data is loading.</li>
-            <li>Error handling with try/catch: Implementing robust error handling in asynchronous functions.</li>
-        </ul>
-        <h3>Technical Highlights:</h3>
-        <ul>
-            <li>Mastering the `Async/Await` syntax.</li>
-            <li>Improved Promise Handling for cleaner code.</li>
-            <li>Understanding the Event Loop and its role in asynchronous execution.</li>
-            <li>Implementing modern error handling patterns with `try...catch`.</li>
-        </ul>
-
-        <h2>Day 6: Advanced Async Dashboard</h2>
-        <p>Deepening understanding of asynchronous concepts and UI.</p>
-        <h3>Features:</h3>
-        <ul>
-            <li>Career Development Dashboard: Application with more complex UI elements.</li>
-            <li>Real-time clock with setInterval: Displaying a continuously updating clock.</li>
-            <li>Animated UI components: Adding more sophisticated CSS animations.</li>
-            <li>Professional profile display: Structuring and presenting detailed information.</li>
-            <li>Modern glassmorphism design: Implementing a popular UI aesthetic.</li>
-        </ul>
-        <h3>Technical Highlights:</h3>
-        <ul>
-            <li>Advanced CSS animations and transitions.</li>
-            <li>Further exploring Event Loop visualization concepts.</li>
-            <li>Understanding Microtasks and Macrotasks.</li>
-            <li>Applying Modern UI/UX principles.</li>
-            <li>Creating Responsive Grid Layouts.</li>
-            <li>Implementing Glassmorphism effects using CSS.</li>
-        </ul>
-
-        <h2>Day 7: JavaScript Engine & Execution Context</h2>
-        <p>Understanding how JavaScript code is processed.</p>
-        <h3>Important Topics & Concepts:</h3>
-        <ul>
-            <li>JavaScript Engine Architecture: Overview of components like the Call Stack, Heap, and Event Loop.</li>
-            <li>Execution Context Understanding: How JavaScript code is executed within different contexts (Global, Function).</li>
-            <li>Memory Management: How the JavaScript engine handles memory allocation and garbage collection.</li>
-            <li>Call Stack Operations: How function calls are managed on the stack.</li>
-            <li>Scope Chain Visualization: How JavaScript resolves variables based on nested scopes.</li>
-        </ul>
-
-        <h2>Day 8: Event Loop Playground</h2>
-        <p>Visualizing and understanding the Event Loop in action.</p>
-        <h3>Important Topics & Concepts:</h3>
-        <ul>
-            <li>Event Loop Mechanics: How asynchronous operations and callbacks are managed.</li>
-            <li>Task Queue Management: Understanding the queue for macrotasks (e.g., `setTimeout`, `setInterval`).</li>
-            <li>Microtask Priority: How the microtask queue (for Promises, `queueMicrotask`) is processed before the macrotask queue.</li>
-            <li>Asynchronous Operations: How non-blocking operations work in JavaScript.</li>
-            <li>Queue Visualization: Conceptual understanding of how tasks and microtasks are processed.</li>
-        </ul>
-
-        <h2>Day 9: Promises & Async/Await Playground</h2>
-        <p>Mastering asynchronous patterns for cleaner code.</p>
-        <h3>Important Topics & Concepts:</h3>
-        <ul>
-            <li>Promise Implementation: Creating and working with Promise objects.</li>
-            <li>Async/Await Syntax: Using the modern syntax to simplify asynchronous code.</li>
-            <li>Error Handling: Implementing proper error handling for Promises and `async`/`await`.</li>
-            <li>Promise States: Understanding the lifecycle of a Promise (`pending`, `fulfilled`, `rejected`).</li>
-            <li>Chain Visualization: How to chain `.then()` calls for sequential asynchronous tasks.</li>
-        </ul>
-
-        <h2>Day 9.10: Timer</h2>
-        <p>Implementing time-based functionality and task management.</p>
-        <h3>Important Topics & Concepts:</h3>
-        <ul>
-            <li>setInterval Implementation: Using `setInterval` for recurring actions.</li>
-        </ul>
-         <pre><code>
-let count = 0;
-const intervalId = setInterval(() => {
-  count++;
-  console.log('Count:', count);
-  if (count >= 5) {
-    clearInterval(intervalId);
-    console.log('Timer stopped.');
-  }
-}, 1000);
-        </code></pre>
-        <ul>
-            <li>Timer State Management: Tracking the timer's status (running, paused, stopped).</li>
-            <li>Task Management: Adding and displaying completed tasks.</li>
-            <li>Progress Tracking: Visualizing the timer's progress (e.g., with a progress bar).</li>
-            <li>Mode Switching: Handling different timer modes (countdown, stopwatch, pomodoro).</li>
-        </ul>
-
-        <div class="resources">
-            <h2>Finding More Resources:</h2>
-            <p>To deepen your understanding and explore these topics further, consider the following resources:</p>
-
-            <h3>Official Documentation:</h3>
-            <ul>
-                <li><a href="https://developer.mozilla.org/en-US/" target="_blank">MDN Web Docs</a>: Comprehensive and reliable reference for JavaScript, HTML, and CSS. Essential for detailed information.</li>
-            </ul>
-
-            <h3>Video Tutorials:</h3>
-            <p>Platforms like YouTube offer a wealth of video tutorials. While I cannot provide direct links, you can use the following specific keywords to search on YouTube and find relevant videos:</p>
-            <ul>
-                <li>"JavaScript DOM manipulation tutorial"</li>
-                <li>"JavaScript Fetch API explained"</li>
-                <li>"JavaScript Event Loop and Call Stack visualization"</li>
-                <li>"JavaScript Promises vs Async Await"</li>
-                <li>"Build a JavaScript Timer with setInterval"</li>
-                <li>"Understanding JavaScript Scope and Closures"</li>
-                <li>"Introduction to MERN Stack"</li>
-            </ul>
-            <p>Look for channels with clear explanations, practical examples, and positive community feedback.</p>
-
-            <h3>Interactive Learning Platforms:</h3>
-            <p>Websites like Codecademy, freeCodeCamp, and Scrimba offer interactive courses that can complement your learning by providing hands-on coding practice.</p>
-        </div>
+      </div>
+      <a href="https://youtu.be/Ttf3CEsEwMQ" class="youtube-link" target="_blank">Watch Tutorial: Building a Todo List</a>
     </div>
+
+    <div class="day-content">
+      <h2>Day 2: Random User Explorer</h2>
+      <p>Learned to fetch and display data from a public API using <code>fetch()</code>.</p>
+      <div class="concept-image">👥</div>
+      <div class="icon-container">
+        <div class="icon-item">👤</div>
+        <div class="icon-item">📧</div>
+        <div class="icon-item">🖼️</div>
+      </div>
+      <div class="feature-list">
+        <h3>Key Features:</h3>
+        <ul>
+          <li>Fetched data from Random User API</li>
+          <li>Displayed name, email, and profile image</li>
+          <li>Practiced error handling and API response formatting</li>
+          <li>Added user search and filtering</li>
+          <li>Implemented infinite scroll for user list</li>
+        </ul>
+      </div>
+      <a href="https://youtu.be/1sHUKY5VJqA" class="youtube-link" target="_blank">Watch Tutorial: API Integration</a>
+    </div>
+
+    <div class="day-content">
+      <h2>Day 3: API Testing Tool</h2>
+      <p>Practiced HTTP methods like GET, POST, PUT, and DELETE using a JSONPlaceholder API.</p>
+      <div class="concept-image">🔧</div>
+      <div class="icon-container">
+        <div class="icon-item">📡</div>
+        <div class="icon-item">📤</div>
+        <div class="icon-item">📥</div>
+      </div>
+      <div class="feature-list">
+        <h3>Key Features:</h3>
+        <ul>
+          <li>Used <code>fetch()</code> with method options</li>
+          <li>Designed form-based UI for sending requests</li>
+          <li>Showed API responses on the web page</li>
+          <li>Added request history tracking</li>
+          <li>Implemented response formatting and syntax highlighting</li>
+        </ul>
+      </div>
+      <a href="https://youtu.be/7YcW25PHnAA" class="youtube-link" target="_blank">Watch Tutorial: API Testing Tool</a>
+    </div>
+
+    <div class="day-content">
+      <h2>Day 4: Islamic History Explorer</h2>
+      <p>Learned CRUD operations using a mock backend or localStorage.</p>
+      <div class="concept-image">📚</div>
+      <div class="icon-container">
+        <div class="icon-item">🕌</div>
+        <div class="icon-item">⏳</div>
+        <div class="icon-item">🔍</div>
+      </div>
+      <div class="feature-list">
+        <h3>Key Features:</h3>
+        <ul>
+          <li>Created and stored Islamic history data</li>
+          <li>Displayed and updated information dynamically</li>
+          <li>Practiced CRUD logic with JavaScript</li>
+          <li>Added timeline visualization</li>
+          <li>Implemented search and filtering by period</li>
+        </ul>
+      </div>
+      <a href="https://youtu.be/3PHXvlpOkf4" class="youtube-link" target="_blank">Watch Tutorial: CRUD Operations</a>
+    </div>
+
+    <div class="day-content">
+      <h2>Day 5: Random User Dashboard</h2>
+      <p>Dived deep into <code>async/await</code> and building a loading-aware UI dashboard.</p>
+      <div class="concept-image">📊</div>
+      <div class="icon-container">
+        <div class="icon-item">⏳</div>
+        <div class="icon-item">📈</div>
+        <div class="icon-item">🔄</div>
+      </div>
+      <div class="feature-list">
+        <h3>Key Features:</h3>
+        <ul>
+          <li>Used <code>async function</code> and <code>await</code> with <code>fetch</code></li>
+          <li>Handled loading states and errors</li>
+          <li>Created a responsive card layout</li>
+          <li>Added user statistics and charts</li>
+          <li>Implemented real-time data updates</li>
+        </ul>
+      </div>
+      <a href="https://youtu.be/7YcW25PHnAA" class="youtube-link" target="_blank">Watch Tutorial: Async/Await</a>
+    </div>
+
+    <div class="day-content">
+      <h2>Day 6: Career Development Dashboard</h2>
+      <p>Built a dynamic dashboard showing job data using complex <code>async</code> calls.</p>
+      <div class="concept-image">💼</div>
+      <div class="icon-container">
+        <div class="icon-item">🔍</div>
+        <div class="icon-item">💰</div>
+        <div class="icon-item">📋</div>
+      </div>
+      <div class="feature-list">
+        <h3>Key Features:</h3>
+        <ul>
+          <li>Fetched data using async/await from a real job API</li>
+          <li>Showed cards with job titles, companies, and descriptions</li>
+          <li>Practiced filtering and search functionality</li>
+          <li>Added job application tracking</li>
+          <li>Implemented salary range filters</li>
+        </ul>
+      </div>
+      <a href="https://youtu.be/1sHUKY5VJqA" class="youtube-link" target="_blank">Watch Tutorial: Career Dashboard</a>
+    </div>
+
+    <div class="day-content">
+      <h2>Day 7: JavaScript Engine & Execution Context</h2>
+      <p>Understanding how JavaScript runs under the hood.</p>
+      <div class="concept-image">⚙️</div>
+      <div class="icon-container">
+        <div class="icon-item">🔧</div>
+        <div class="icon-item">🧠</div>
+        <div class="icon-item">📚</div>
+      </div>
+      <div class="feature-list">
+        <h3>Key Concepts:</h3>
+        <ul>
+          <li><strong>V8 Engine:</strong> Compiles JavaScript to machine code</li>
+          <li><strong>Execution Context:</strong> Global and function-level contexts</li>
+          <li><strong>Memory & Code Phases:</strong> Hoisting and execution</li>
+          <li><strong>Call Stack:</strong> Tracks active function calls</li>
+          <li><strong>Scope Chain:</strong> Variable access rules</li>
+        </ul>
+      </div>
+      <a href="https://youtu.be/7YcW25PHnAA" class="youtube-link" target="_blank">Watch Tutorial: JavaScript Engine</a>
+    </div>
+
+    <div class="day-content">
+      <h2>Day 8: Event Loop Deep Dive</h2>
+      <p>Visualized the event loop and how async tasks are scheduled.</p>
+      <div class="concept-image">🔄</div>
+      <div class="icon-container">
+        <div class="icon-item">⏳</div>
+        <div class="icon-item">📊</div>
+        <div class="icon-item">🔁</div>
+      </div>
+      <div class="feature-list">
+        <h3>Key Concepts:</h3>
+        <ul>
+          <li>Learned how the call stack, Web APIs, and callback queue interact</li>
+          <li>Explored the difference between microtasks (Promises) and macrotasks (setTimeout)</li>
+          <li>Used tools like Loupe and visual debugging</li>
+          <li>Implemented custom event loop visualization</li>
+          <li>Practiced async task scheduling</li>
+        </ul>
+      </div>
+      <a href="https://youtu.be/1sHUKY5VJqA" class="youtube-link" target="_blank">Watch Tutorial: Event Loop</a>
+    </div>
+
+    <div class="day-content">
+      <h2>Day 9.10: Final Concepts on Async JavaScript</h2>
+      <p>Wrapped up async JavaScript and built concurrency-aware logic.</p>
+      <div class="concept-image">🎯</div>
+      <div class="icon-container">
+        <div class="icon-item">⚡</div>
+        <div class="icon-item">🔄</div>
+        <div class="icon-item">🚀</div>
+      </div>
+      <div class="feature-list">
+        <h3>Key Concepts:</h3>
+        <ul>
+          <li>Compared <code>Promise</code> vs <code>async/await</code></li>
+          <li>Used <code>setTimeout</code> and <code>setInterval</code> effectively</li>
+          <li>Learned about concurrency issues, Promise.all, and race conditions</li>
+          <li>Implemented error handling strategies</li>
+          <li>Built concurrent task manager</li>
+        </ul>
+      </div>
+      <a href="https://youtu.be/7YcW25PHnAA" class="youtube-link" target="_blank">Watch Tutorial: Async JavaScript</a>
+    </div>
+
+    <div class="notes">
+      <h2>Notes</h2>
+      <p>This journey is designed to gradually build JavaScript and React proficiency in a project-based, practical way. Each day targets real-world use cases and frontend challenges that MERN developers face.</p>
+    </div>
+
+    <div class="resources">
+      <h2>Helpful Resources</h2>
+      <ul>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">MDN Web Docs - JavaScript</a></li>
+        <li><a href="https://javascript.info/" target="_blank">The Modern JavaScript Tutorial</a></li>
+        <li><a href="https://www.youtube.com/c/ProgrammingHero" target="_blank">Programming Hero YouTube Channel</a></li>
+        <li><a href="https://visualgo.net/en" target="_blank">Visualgo - Algorithm Visualizations</a></li>
+        <li><a href="https://www.youtube.com/watch?v=8aGhZQkoFbQ" target="_blank">What the heck is the event loop anyway?</a></li>
+        <li><a href="https://www.youtube.com/watch?v=7YcW25PHnAA" target="_blank">JavaScript Promises in 10 Minutes</a></li>
+      </ul>
+    </div>
+
+    <div class="books">
+      <h2>📚 Recommended Books</h2>
+      <div class="book-grid">
+        <div class="book-card">
+          <h3>জাভাস্ক্রিপ্ট টিউটোরিয়াল</h3>
+          <p>By Programming Hero</p>
+          <div class="book-features">
+            <span>🎯 1100+ Exercises</span>
+            <span>📖 Bangla Language</span>
+            <span>💡 Story Based Learning</span>
+          </div>
+          <a href="https://web.programming-hero.com/home/ph-book/%E0%A6%9C%E0%A6%BE%E0%A6%AD%E0%A6%BE%E0%A6%B8%E0%A7%8D%E0%A6%95%E0%A7%8D%E0%A6%B0%E0%A6%BF%E0%A6%AA%E0%A7%8D%E0%A6%9F-%E0%A6%9F%E0%A6%BF%E0%A6%89%E0%A6%9F%E0%A7%8B%E0%A6%B0%E0%A6%BF%E0%A6%AF%E0%A6%BC%E0%A6%BE%E0%A6%B2/javascript-json-fetch-and-promise/javascript%20json" class="book-link" target="_blank">Read Online</a>
+        </div>
+
+        <div class="book-card">
+          <h3>Eloquent JavaScript</h3>
+          <p>By Marijn Haverbeke</p>
+          <div class="book-features">
+            <span>📚 Comprehensive</span>
+            <span>🌐 Free Online</span>
+            <span>💻 Modern JavaScript</span>
+          </div>
+          <a href="https://eloquentjavascript.net/" class="book-link" target="_blank">Read Online</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const html = document.documentElement;
+    
+    // Check for saved theme preference
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    html.setAttribute('data-theme', savedTheme);
+    themeToggle.checked = savedTheme === 'light';
+
+    // Theme toggle handler
+    themeToggle.addEventListener('change', function() {
+      if (this.checked) {
+        html.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+      } else {
+        html.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+      }
+    });
+  </script>
 </body>
-</html> 
+</html>
