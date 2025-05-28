@@ -215,6 +215,28 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
+    @keyframes slideIn {
+      from { transform: translateX(-100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    @keyframes scaleIn {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+
     .container > * {
       animation: fadeIn 0.7s ease forwards;
       opacity: 0;
@@ -232,6 +254,127 @@
     .container > *:nth-child(10) { animation-delay: 1.1s; }
     .container > *:nth-child(11) { animation-delay: 1.2s; }
     .container > *:nth-child(12) { animation-delay: 1.3s; }
+
+    .day-content {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .day-content:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    }
+
+    .concept-image {
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .icon-item {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .icon-item:hover {
+      transform: scale(1.1);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    }
+
+    .youtube-link {
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+
+    .youtube-link:hover {
+      transform: scale(1.05);
+    }
+
+    .book-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .book-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    }
+
+    .book-link {
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+
+    .book-link:hover {
+      transform: scale(1.05);
+    }
+
+    .theme-switch-wrapper {
+      animation: slideIn 0.5s ease-out;
+    }
+
+    .slider {
+      transition: background-color 0.3s ease;
+    }
+
+    .slider:before {
+      transition: transform 0.3s ease;
+    }
+
+    h1 {
+      animation: scaleIn 0.8s ease-out;
+    }
+
+    .subtitle {
+      animation: fadeIn 1s ease-out;
+    }
+
+    .feature-list {
+      transition: transform 0.3s ease;
+    }
+
+    .feature-list:hover {
+      transform: scale(1.02);
+    }
+
+    a {
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -2px;
+      left: 0;
+      background-color: var(--accent-color);
+      transition: width 0.3s ease;
+    }
+
+    a:hover::after {
+      width: 100%;
+    }
+
+    .notes, .resources, .books {
+      animation: fadeIn 0.8s ease-out;
+    }
+
+    /* Loading animation for content */
+    .loading {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .loading::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      animation: loading 1.5s infinite;
+    }
+
+    @keyframes loading {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
 
     .books {
       background: var(--card-bg);
@@ -557,6 +700,50 @@
             <span>💻 Modern JavaScript</span>
           </div>
           <a href="https://eloquentjavascript.net/" class="book-link" target="_blank">Read Online</a>
+        </div>
+
+        <div class="book-card">
+          <h3>You Don't Know JS</h3>
+          <p>By Kyle Simpson</p>
+          <div class="book-features">
+            <span>🔍 Deep Dive</span>
+            <span>📖 6 Book Series</span>
+            <span>🎯 Advanced Concepts</span>
+          </div>
+          <a href="https://github.com/getify/You-Dont-Know-JS" class="book-link" target="_blank">Read Online</a>
+        </div>
+
+        <div class="book-card">
+          <h3>JavaScript: The Good Parts</h3>
+          <p>By Douglas Crockford</p>
+          <div class="book-features">
+            <span>⭐ Classic</span>
+            <span>🔧 Best Practices</span>
+            <span>📚 Essential Reading</span>
+          </div>
+          <a href="https://www.oreilly.com/library/view/javascript-the-good/9780596517748/" class="book-link" target="_blank">Get Book</a>
+        </div>
+
+        <div class="book-card">
+          <h3>Learning JavaScript Design Patterns</h3>
+          <p>By Addy Osmani</p>
+          <div class="book-features">
+            <span>🎨 Design Patterns</span>
+            <span>🏗️ Architecture</span>
+            <span>💡 Best Practices</span>
+          </div>
+          <a href="https://addyosmani.com/resources/essentialjsdesignpatterns/book/" class="book-link" target="_blank">Read Online</a>
+        </div>
+
+        <div class="book-card">
+          <h3>JavaScript Patterns</h3>
+          <p>By Stoyan Stefanov</p>
+          <div class="book-features">
+            <span>🔧 Code Patterns</span>
+            <span>⚡ Performance</span>
+            <span>📚 Practical Examples</span>
+          </div>
+          <a href="https://www.oreilly.com/library/view/javascript-patterns/9780596806767/" class="book-link" target="_blank">Get Book</a>
         </div>
       </div>
     </div>
