@@ -9,11 +9,13 @@ This repository contains a series of daily projects that demonstrate the progres
 ## 🎯 Daily Modules
 
 ### Day 1: DOM & API Fundamentals
+
 - **Core Concepts:**
   - Asynchronous JavaScript with `fetch()`
   - DOM manipulation and dynamic content rendering
   - Event handling and user interactions
   - Basic error handling and data validation
+
 - **Key Technologies:**
   - Vanilla JavaScript
   - HTML5
@@ -21,11 +23,13 @@ This repository contains a series of daily projects that demonstrate the progres
   - RESTful APIs
 
 ### Day 2: Random User Explorer
+
 - **Features:**
   - Integration with Random User API
   - Responsive card-based user interface
   - Modal-based detailed user information
   - Search and filter functionality
+
 - **Technical Highlights:**
   - Advanced DOM manipulation
   - Object-oriented JavaScript
@@ -33,11 +37,13 @@ This repository contains a series of daily projects that demonstrate the progres
   - Responsive design implementation
 
 ### Day 3: API Debug Playground
+
 - **Features:**
   - Islamic Names Explorer with enhanced UI
   - Real-time search functionality
   - Animated user interface
   - Comprehensive error handling
+
 - **Technical Highlights:**
   - Advanced error handling
   - API status code management
@@ -45,11 +51,13 @@ This repository contains a series of daily projects that demonstrate the progres
   - Responsive design with animations
 
 ### Day 4: CRUD Operations
+
 - **Features:**
   - Islamic History Explorer
   - Full CRUD functionality
   - Data persistence with Local Storage
   - Responsive UI with animations
+
 - **Technical Highlights:**
   - CRUD operations implementation
   - Data validation
@@ -57,11 +65,13 @@ This repository contains a series of daily projects that demonstrate the progres
   - Modern UI components
 
 ### Day 5: Async/Await Implementation
+
 - **Features:**
   - Random User Dashboard
   - Async data loading
   - Loading states and animations
   - Error handling with try/catch
+
 - **Technical Highlights:**
   - Async/Await syntax
   - Promise handling
@@ -69,12 +79,14 @@ This repository contains a series of daily projects that demonstrate the progres
   - Modern error handling
 
 ### Day 6: Advanced Async Dashboard
+
 - **Features:**
   - Career Development Dashboard
   - Real-time clock with setInterval
   - Animated UI components
   - Professional profile display
   - Modern glassmorphism design
+
 - **Technical Highlights:**
   - Advanced CSS animations
   - Event Loop visualization
@@ -84,11 +96,13 @@ This repository contains a series of daily projects that demonstrate the progres
   - Glassmorphism effects
 
 ### Day 7: JavaScript Engine & Execution Context
+
 - **Features:**
   - JavaScript Engine Visualization
   - Execution Context Explorer
   - Call Stack Demonstrator
   - Memory Management Visualizer
+
 - **Technical Highlights:**
   - JavaScript Engine Architecture
   - Execution Context Understanding
@@ -97,11 +111,13 @@ This repository contains a series of daily projects that demonstrate the progres
   - Scope Chain Visualization
 
 ### Day 8: Event Loop Playground
+
 - **Features:**
   - Event Loop Visualizer
   - Task Queue Demonstrator
   - Microtask Queue Explorer
   - Callback Queue Visualizer
+
 - **Technical Highlights:**
   - Event Loop Mechanics
   - Task Queue Management
@@ -110,11 +126,13 @@ This repository contains a series of daily projects that demonstrate the progres
   - Queue Visualization
 
 ### Day 9: Promises & Async/Await Playground
+
 - **Features:**
   - Promise Chain Visualizer
   - Async/Await Demonstrator
   - Error Handling Explorer
   - Promise States Visualizer
+
 - **Technical Highlights:**
   - Promise Implementation
   - Async/Await Syntax
@@ -123,11 +141,13 @@ This repository contains a series of daily projects that demonstrate the progres
   - Chain Visualization
 
 ### Day 9.10: Timer
+
 - **Features:**
   - Multiple Timer Modes (Countdown, Stopwatch, Pomodoro)
   - Task Completion Tracking
   - Progress Visualization
   - Custom Time Input
+
 - **Technical Highlights:**
   - setInterval Implementation
   - Timer State Management
@@ -135,9 +155,10 @@ This repository contains a series of daily projects that demonstrate the progres
   - Progress Tracking
   - Mode Switching
 
-## ��️ Technology Stack
+## 🛠️ Technology Stack
 
 ### Frontend
+
 - HTML5
 - CSS3 (with modern features)
 - Vanilla JavaScript (ES6+)
@@ -145,6 +166,7 @@ This repository contains a series of daily projects that demonstrate the progres
 - RESTful API Integration
 
 ### Development Tools
+
 - Git & GitHub
 - VS Code
 - Chrome DevTools
@@ -152,7 +174,7 @@ This repository contains a series of daily projects that demonstrate the progres
 
 ## 🎨 Project Structure
 
-```
+```bash
 journey-to-mern/
 ├── day-1-dom-api-practice/
 ├── day-2-random-user/
@@ -169,6 +191,7 @@ journey-to-mern/
 ## 🚀 Upcoming Modules
 
 ### Day 11+: Full Stack Development
+
 - Node.js backend implementation
 - MongoDB database integration
 - Express.js API development
@@ -191,11 +214,11 @@ MERN Stack Developer in Training
 ## 🤝 Contributing
 
 Feel free to contribute to this learning journey by:
+
 - Reporting bugs
 - Suggesting enhancements
 - Sharing best practices
 - Providing feedback
-
 
 ---
 
