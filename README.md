@@ -220,6 +220,15 @@ Feel free to contribute to this learning journey by:
 - Sharing best practices
 - Providing feedback
 
+## 🔗 Useful Links
+
+- [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+- [JavaScript.info](https://javascript.info/)
+- [Node.js Documentation](https://nodejs.org/docs)
+- [MongoDB Documentation](https://docs.mongodb.com/)
+- [Express.js Guide](https://expressjs.com/guide/routing.html)
+- [React Documentation](https://reactjs.org/docs/getting-started.html)
+
 ---
 
 *"The journey of a thousand miles begins with a single step." - Lao Tzu*
