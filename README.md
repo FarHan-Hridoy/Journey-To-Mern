@@ -8,7 +8,7 @@ This repository contains a series of daily projects that demonstrate the progres
 
 ## 🎯 Daily Modules
 
-### Day 1: DOM & API Fundamentals
+### [Day 1: DOM & API Fundamentals](./day-1-dom-api-practice)
 
 - **Core Concepts:**
   - Asynchronous JavaScript with `fetch()`
@@ -22,7 +22,7 @@ This repository contains a series of daily projects that demonstrate the progres
   - CSS3
   - RESTful APIs
 
-### Day 2: Random User Explorer
+### [Day 2: Random User Explorer](./day-2-random-user)
 
 - **Features:**
   - Integration with Random User API
@@ -36,7 +36,7 @@ This repository contains a series of daily projects that demonstrate the progres
   - Event delegation
   - Responsive design implementation
 
-### Day 3: API Debug Playground
+### [Day 3: API Debug Playground](./day-3-api-debug-playground)
 
 - **Features:**
   - Islamic Names Explorer with enhanced UI
@@ -50,7 +50,7 @@ This repository contains a series of daily projects that demonstrate the progres
   - Modern UI/UX implementation
   - Responsive design with animations
 
-### Day 4: CRUD Operations
+### [Day 4: CRUD Operations](./day-4-crud-operations)
 
 - **Features:**
   - Islamic History Explorer
@@ -64,7 +64,7 @@ This repository contains a series of daily projects that demonstrate the progres
   - State management
   - Modern UI components
 
-### Day 5: Async/Await Implementation
+### [Day 5: Async/Await Implementation](./day-5-async-await)
 
 - **Features:**
   - Random User Dashboard
@@ -78,7 +78,7 @@ This repository contains a series of daily projects that demonstrate the progres
   - Event Loop understanding
   - Modern error handling
 
-### Day 6: Advanced Async Dashboard
+### [Day 6: Advanced Async Dashboard](./day-6-async-dashboard)
 
 - **Features:**
   - Career Development Dashboard
@@ -95,7 +95,7 @@ This repository contains a series of daily projects that demonstrate the progres
   - Responsive grid layout
   - Glassmorphism effects
 
-### Day 7: JavaScript Engine & Execution Context
+### [Day 7: JavaScript Engine & Execution Context](./day-7-javascript-engine-and-execution-context)
 
 - **Features:**
   - JavaScript Engine Visualization
@@ -110,7 +110,7 @@ This repository contains a series of daily projects that demonstrate the progres
   - Call Stack Operations
   - Scope Chain Visualization
 
-### Day 8: Event Loop Playground
+### [Day 8: Event Loop Playground](./day-8-event-loop-playground)
 
 - **Features:**
   - Event Loop Visualizer
@@ -125,7 +125,7 @@ This repository contains a series of daily projects that demonstrate the progres
   - Asynchronous Operations
   - Queue Visualization
 
-### Day 9: Promises & Async/Await Playground
+### [Day 9: Promises & Async/Await Playground](./day-9-promises-async-await)
 
 - **Features:**
   - Promise Chain Visualizer
@@ -140,7 +140,7 @@ This repository contains a series of daily projects that demonstrate the progres
   - Promise States
   - Chain Visualization
 
-### Day 9.10: Timer
+### [Day 9.10: Timer](./day-9.10-timer)
 
 - **Features:**
   - Multiple Timer Modes (Countdown, Stopwatch, Pomodoro)
@@ -155,46 +155,81 @@ This repository contains a series of daily projects that demonstrate the progres
   - Progress Tracking
   - Mode Switching
 
+### [Day 11: PH Tube - YouTube Clone](./day-11-Ph%20Tube%20Youtube%20Clone)
+
+- **Latest Updates:**
+  - 🔍 Search functionality with real-time filtering
+  - 👤 Google authentication integration
+  - ⏰ Real-time clock display
+  - 🎨 Improved UI with animations
+  - 🔄 Enhanced category filtering
+
+- **Core Features:**
+  - 📱 Responsive design
+  - 🎥 Video grid with hover effects
+  - 🎯 Category-based filtering
+  - 🔍 Real-time search
+  - 👤 Google authentication
+  - ⏰ Live clock display
+  - 📺 Video player modal
+
+- **Categories:**
+  - 📚 All Videos
+  - 🕌 Islamic Content
+  - 💻 MERN Stack
+  - 📖 Quran Recitation
+  - 📚 Prophet Stories
+  - 💻 Programming
+
+- **Technical Stack:**
+  - HTML5
+  - CSS3
+  - JavaScript
+  - DaisyUI
+  - Tailwind CSS
+  - Google Auth API
+
 ## 🛠️ Technology Stack
 
 ### Frontend
 
-- HTML5
-- CSS3 (with modern features)
-- Vanilla JavaScript (ES6+)
-- DOM Manipulation
-- RESTful API Integration
+- [HTML5](https://developer.mozilla.org/en-US/docs/Web/HTML)
+- [CSS3](https://developer.mozilla.org/en-US/docs/Web/CSS)
+- [JavaScript (ES6+)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+- [DOM Manipulation](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model)
+- [RESTful API Integration](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)
 
 ### Development Tools
 
-- Git & GitHub
-- VS Code
-- Chrome DevTools
-- Postman (API Testing)
+- [Git](https://git-scm.com/) & [GitHub](https://github.com)
+- [VS Code](https://code.visualstudio.com/)
+- [Chrome DevTools](https://developer.chrome.com/docs/devtools/)
+- [Postman](https://www.postman.com/) (API Testing)
 
 ## 🎨 Project Structure
 
 ```bash
 journey-to-mern/
-├── day-1-dom-api-practice/
-├── day-2-random-user/
-├── day-3-api-debug-playground/
-├── day-4-crud-operations/
-├── day-5-async-await/
-├── day-6-async-dashboard/
-├── day-7-javascript-engine-and-execution-context/
-├── day-8-event-loop-playground/
-├── day-9-promises-async-await/
-└── day-9.10-timer/
+├── [day-1-dom-api-practice](./day-1-dom-api-practice)
+├── [day-2-random-user](./day-2-random-user)
+├── [day-3-api-debug-playground](./day-3-api-debug-playground)
+├── [day-4-crud-operations](./day-4-crud-operations)
+├── [day-5-async-await](./day-5-async-await)
+├── [day-6-async-dashboard](./day-6-async-dashboard)
+├── [day-7-javascript-engine-and-execution-context](./day-7-javascript-engine-and-execution-context)
+├── [day-8-event-loop-playground](./day-8-event-loop-playground)
+├── [day-9-promises-async-await](./day-9-promises-async-await)
+├── [day-9.10-timer](./day-9.10-timer)
+└── [day-11-ph-tube](./day-11-Ph%20Tube%20Youtube%20Clone)
 ```
 
 ## 🚀 Upcoming Modules
 
-### Day 11+: Full Stack Development
+### Day 12+: Full Stack Development
 
-- Node.js backend implementation
-- MongoDB database integration
-- Express.js API development
+- [Node.js](https://nodejs.org/) backend implementation
+- [MongoDB](https://www.mongodb.com/) database integration
+- [Express.js](https://expressjs.com/) API development
 - Full MERN stack application
 
 ## 👨‍💻 Author
@@ -229,82 +264,6 @@ Feel free to contribute to this learning journey by:
 - [Express.js Guide](https://expressjs.com/guide/routing.html)
 - [React Documentation](https://reactjs.org/docs/getting-started.html)
 
-# PH Tube - YouTube Clone
+## 📄 License
 
-A modern YouTube clone built with HTML, CSS, and JavaScript, featuring a clean and responsive design.
-
-## Features
-
-### Latest Updates
-- 🔍 Added search functionality with real-time filtering
-- 👤 Google authentication integration
-- ⏰ Added real-time clock display
-- 🎨 Improved UI with animations and transitions
-- 🔄 Enhanced category filtering system
-
-### Core Features
-- 📱 Responsive design for all devices
-- 🎥 Video grid layout with hover effects
-- 🎯 Category-based video filtering
-- 🔍 Search functionality for videos
-- 👤 User authentication with Google
-- ⏰ Real-time clock display
-- 🎨 Modern UI with animations
-- 📺 Video player modal
-- 🎯 Category navigation
-- 🔄 Smooth transitions and animations
-
-### Video Categories
-- 📚 All Videos
-- 🕌 Islamic Content
-- 💻 MERN Stack
-- 📖 Quran Recitation
-- 📚 Prophet Stories
-- 💻 Programming Tutorials
-
-### UI Components
-- 🎨 Modern and clean interface
-- 🎥 Video cards with hover effects
-- 🔍 Search bar with instant results
-- 👤 Profile dropdown menu
-- ⏰ Real-time clock
-- 🎯 Category navigation bar
-- 📺 Video player modal
-
-### Authentication
-- 🔐 Google Sign-In integration
-- 👤 User profile management
-- 🔄 Session handling
-- 👋 Guest mode support
-
-### Search Features
-- 🔍 Real-time search
-- 📝 Search by title, channel, or description
-- 🔄 Instant results
-- 🎯 Category-aware search
-
-## Technologies Used
-- HTML5
-- CSS3
-- JavaScript
-- DaisyUI
-- Tailwind CSS
-- Google Authentication API
-
-## Getting Started
-1. Clone the repository
-2. Open `index.html` in your browser
-3. Start exploring PH Tube!
-
-## Future Updates
-- [ ] Add video upload functionality
-- [ ] Implement comments system
-- [ ] Add user playlists
-- [ ] Implement video recommendations
-- [ ] Add dark/light theme toggle
-
-## Contributing
-Feel free to contribute to this project by submitting issues or pull requests.
-
-## License
-This project is open source and available under the MIT License.
+This project is open source and available under the [MIT License](LICENSE).
