@@ -229,8 +229,82 @@ Feel free to contribute to this learning journey by:
 - [Express.js Guide](https://expressjs.com/guide/routing.html)
 - [React Documentation](https://reactjs.org/docs/getting-started.html)
 
----
+# PH Tube - YouTube Clone
 
-*"The journey of a thousand miles begins with a single step." - Lao Tzu*
+A modern YouTube clone built with HTML, CSS, and JavaScript, featuring a clean and responsive design.
 
+## Features
 
+### Latest Updates
+- 🔍 Added search functionality with real-time filtering
+- 👤 Google authentication integration
+- ⏰ Added real-time clock display
+- 🎨 Improved UI with animations and transitions
+- 🔄 Enhanced category filtering system
+
+### Core Features
+- 📱 Responsive design for all devices
+- 🎥 Video grid layout with hover effects
+- 🎯 Category-based video filtering
+- 🔍 Search functionality for videos
+- 👤 User authentication with Google
+- ⏰ Real-time clock display
+- 🎨 Modern UI with animations
+- 📺 Video player modal
+- 🎯 Category navigation
+- 🔄 Smooth transitions and animations
+
+### Video Categories
+- 📚 All Videos
+- 🕌 Islamic Content
+- 💻 MERN Stack
+- 📖 Quran Recitation
+- 📚 Prophet Stories
+- 💻 Programming Tutorials
+
+### UI Components
+- 🎨 Modern and clean interface
+- 🎥 Video cards with hover effects
+- 🔍 Search bar with instant results
+- 👤 Profile dropdown menu
+- ⏰ Real-time clock
+- 🎯 Category navigation bar
+- 📺 Video player modal
+
+### Authentication
+- 🔐 Google Sign-In integration
+- 👤 User profile management
+- 🔄 Session handling
+- 👋 Guest mode support
+
+### Search Features
+- 🔍 Real-time search
+- 📝 Search by title, channel, or description
+- 🔄 Instant results
+- 🎯 Category-aware search
+
+## Technologies Used
+- HTML5
+- CSS3
+- JavaScript
+- DaisyUI
+- Tailwind CSS
+- Google Authentication API
+
+## Getting Started
+1. Clone the repository
+2. Open `index.html` in your browser
+3. Start exploring PH Tube!
+
+## Future Updates
+- [ ] Add video upload functionality
+- [ ] Implement comments system
+- [ ] Add user playlists
+- [ ] Implement video recommendations
+- [ ] Add dark/light theme toggle
+
+## Contributing
+Feel free to contribute to this project by submitting issues or pull requests.
+
+## License
+This project is open source and available under the MIT License.
