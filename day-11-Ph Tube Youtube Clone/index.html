@@ -550,6 +550,62 @@
     <div class="flex-none gap-4 items-center">
       <div class="flex items-center gap-2">
         <div class="text-sm opacity-70" id="current-time"></div>
+        <!-- Add Notification Button -->
+        <div class="relative">
+          <button class="btn btn-ghost btn-circle" id="notification-button">
+            <div class="indicator">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+              </svg>
+              <span class="badge badge-xs badge-primary indicator-item">3</span>
+            </div>
+          </button>
+          <!-- Notification Dropdown -->
+          <div id="notification-dropdown" class="hidden absolute right-0 mt-2 w-80 bg-base-200 rounded-lg shadow-lg z-50">
+            <div class="p-4 border-b border-base-300">
+              <h3 class="font-semibold">Notifications</h3>
+            </div>
+            <div class="max-h-96 overflow-y-auto">
+              <!-- Notification Items -->
+              <div class="p-4 hover:bg-base-300 cursor-pointer transition-colors duration-200">
+                <div class="flex gap-3">
+                  <div class="w-10 h-10 rounded-full overflow-hidden">
+                    <img src="https://ui-avatars.com/api/?name=Code+Pro&background=random" />
+                  </div>
+                  <div>
+                    <p class="text-sm"><span class="font-semibold">Code Pro</span> uploaded a new video</p>
+                    <p class="text-xs opacity-70">2 hours ago</p>
+                  </div>
+                </div>
+              </div>
+              <div class="p-4 hover:bg-base-300 cursor-pointer transition-colors duration-200">
+                <div class="flex gap-3">
+                  <div class="w-10 h-10 rounded-full overflow-hidden">
+                    <img src="https://ui-avatars.com/api/?name=React+Master&background=random" />
+                  </div>
+                  <div>
+                    <p class="text-sm"><span class="font-semibold">React Master</span> went live</p>
+                    <p class="text-xs opacity-70">5 hours ago</p>
+                  </div>
+                </div>
+              </div>
+              <div class="p-4 hover:bg-base-300 cursor-pointer transition-colors duration-200">
+                <div class="flex gap-3">
+                  <div class="w-10 h-10 rounded-full overflow-hidden">
+                    <img src="https://ui-avatars.com/api/?name=Islamic+Channel&background=random" />
+                  </div>
+                  <div>
+                    <p class="text-sm"><span class="font-semibold">Islamic Channel</span> uploaded a new video</p>
+                    <p class="text-xs opacity-70">1 day ago</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="p-4 border-t border-base-300">
+              <button class="btn btn-ghost btn-sm w-full">View all notifications</button>
+            </div>
+          </div>
+        </div>
         <div class="avatar online cursor-pointer" id="profile-icon">
           <div class="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
             <img src="https://ui-avatars.com/api/?name=Guest&background=random" id="profile-image" />
@@ -711,12 +767,12 @@
   <main class="container mx-auto px-4 pt-20">
     <!-- Categories -->
     <div class="flex gap-4 overflow-x-auto py-4 mb-6">
-      <button class="btn btn-primary" data-category="all">All</button>
-      <button class="btn btn-ghost" data-category="islamic">Islamic Content</button>
+      <button class="btn btn-ghost" data-category="all">All</button>
+      <button class="btn btn-primary" data-category="tutorials">Programming</button>
       <button class="btn btn-ghost" data-category="mern">MERN Stack</button>
+      <button class="btn btn-ghost" data-category="islamic">Islamic Content</button>
       <button class="btn btn-ghost" data-category="quran">Quran Recitation</button>
       <button class="btn btn-ghost" data-category="stories">Prophet Stories</button>
-      <button class="btn btn-ghost" data-category="tutorials">Programming</button>
     </div>
 
     <!-- Video Grid -->
@@ -1051,13 +1107,26 @@
     ];
 
     const grid = document.getElementById("video-grid");
-    let currentCategory = "all";
+    let currentCategory = "tutorials";
 
-    function renderVideos(category = "all") {
+    function renderVideos(category = "tutorials") {
       grid.innerHTML = "";
-      const filteredVideos = category === "all" 
+      let filteredVideos = category === "all" 
         ? videoData 
         : videoData.filter(video => video.category === category);
+
+      // Sort videos to show programming content first
+      if (category === "all") {
+        filteredVideos.sort((a, b) => {
+          const programmingCategories = ['tutorials', 'mern'];
+          const aIsProgramming = programmingCategories.includes(a.category);
+          const bIsProgramming = programmingCategories.includes(b.category);
+          
+          if (aIsProgramming && !bIsProgramming) return -1;
+          if (!aIsProgramming && bIsProgramming) return 1;
+          return 0;
+        });
+      }
 
       filteredVideos.forEach((video, index) => {
         const card = document.createElement("div");
@@ -1097,15 +1166,13 @@
     // Add click handlers for category buttons
     document.querySelectorAll('[data-category]').forEach(button => {
       button.addEventListener('click', () => {
-        // Update button styles with animation
+        // Update button styles
         document.querySelectorAll('[data-category]').forEach(btn => {
           btn.classList.remove('btn-primary');
           btn.classList.add('btn-ghost');
-          btn.classList.add('animate-slide-in');
         });
         button.classList.remove('btn-ghost');
         button.classList.add('btn-primary');
-        button.classList.add('animate-scale-in');
 
         // Update videos
         currentCategory = button.dataset.category;
@@ -1113,8 +1180,8 @@
       });
     });
 
-    // Initial render
-    renderVideos();
+    // Initial render with programming content
+    renderVideos('tutorials');
 
     modal.addEventListener("close", () => {
       videoPlayer.src = "";
@@ -1192,6 +1259,31 @@
 
     // Load settings when page loads
     document.addEventListener('DOMContentLoaded', loadSettings);
+
+    // Add notification button functionality
+    const notificationButton = document.getElementById('notification-button');
+    const notificationDropdown = document.getElementById('notification-dropdown');
+
+    notificationButton.addEventListener('click', (e) => {
+      e.stopPropagation();
+      notificationDropdown.classList.toggle('hidden');
+    });
+
+    // Close notification dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!notificationButton.contains(e.target) && !notificationDropdown.contains(e.target)) {
+        notificationDropdown.classList.add('hidden');
+      }
+    });
+
+    // Add notification animation
+    notificationButton.addEventListener('mouseenter', () => {
+      notificationButton.classList.add('animate-bounce');
+    });
+
+    notificationButton.addEventListener('mouseleave', () => {
+      notificationButton.classList.remove('animate-bounce');
+    });
   </script>
 </body>
 </html>
