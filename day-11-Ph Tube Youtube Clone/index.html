@@ -611,11 +611,101 @@
     </div>
     <ul class="py-2">
       <li><a href="#" class="block px-4 py-2 hover:bg-base-300">Your Channel</a></li>
-      <li><a href="#" class="block px-4 py-2 hover:bg-base-300">Settings</a></li>
+      <li><a href="#" class="block px-4 py-2 hover:bg-base-300" onclick="openSettings()">Settings</a></li>
       <li><a href="#" class="block px-4 py-2 hover:bg-base-300">Help</a></li>
       <li class="border-t border-base-300 mt-2"><a href="#" class="block px-4 py-2 hover:bg-base-300 text-error" onclick="signOut()">Sign Out</a></li>
     </ul>
   </div>
+
+  <!-- Settings Modal -->
+  <dialog id="settings_modal" class="modal">
+    <div class="modal-box w-11/12 max-w-2xl bg-base-200">
+      <h3 class="font-bold text-lg mb-4">Settings</h3>
+      
+      <!-- Theme Settings -->
+      <div class="mb-6">
+        <h4 class="font-semibold mb-2">Theme</h4>
+        <div class="flex gap-4">
+          <button class="btn btn-outline" onclick="setTheme('light')">
+            <span class="mr-2">☀️</span> Light
+          </button>
+          <button class="btn btn-outline" onclick="setTheme('dark')">
+            <span class="mr-2">🌙</span> Dark
+          </button>
+          <button class="btn btn-outline" onclick="setTheme('system')">
+            <span class="mr-2">💻</span> System
+          </button>
+        </div>
+      </div>
+
+      <!-- Video Quality Settings -->
+      <div class="mb-6">
+        <h4 class="font-semibold mb-2">Default Video Quality</h4>
+        <select class="select select-bordered w-full max-w-xs">
+          <option>Auto</option>
+          <option>1080p</option>
+          <option>720p</option>
+          <option>480p</option>
+          <option>360p</option>
+        </select>
+      </div>
+
+      <!-- Notification Settings -->
+      <div class="mb-6">
+        <h4 class="font-semibold mb-2">Notifications</h4>
+        <div class="space-y-2">
+          <label class="flex items-center gap-2">
+            <input type="checkbox" class="toggle toggle-primary" checked />
+            <span>New video notifications</span>
+          </label>
+          <label class="flex items-center gap-2">
+            <input type="checkbox" class="toggle toggle-primary" checked />
+            <span>Channel updates</span>
+          </label>
+          <label class="flex items-center gap-2">
+            <input type="checkbox" class="toggle toggle-primary" />
+            <span>Comments on your videos</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Privacy Settings -->
+      <div class="mb-6">
+        <h4 class="font-semibold mb-2">Privacy</h4>
+        <div class="space-y-2">
+          <label class="flex items-center gap-2">
+            <input type="checkbox" class="toggle toggle-primary" checked />
+            <span>Show your activity status</span>
+          </label>
+          <label class="flex items-center gap-2">
+            <input type="checkbox" class="toggle toggle-primary" />
+            <span>Show your watch history</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Language Settings -->
+      <div class="mb-6">
+        <h4 class="font-semibold mb-2">Language</h4>
+        <select class="select select-bordered w-full max-w-xs">
+          <option>English</option>
+          <option>বাংলা</option>
+          <option>العربية</option>
+          <option>اردو</option>
+        </select>
+      </div>
+
+      <div class="modal-action">
+        <button class="btn btn-primary" onclick="saveSettings()">Save Changes</button>
+        <form method="dialog">
+          <button class="btn">Close</button>
+        </form>
+      </div>
+    </div>
+    <form method="dialog" class="modal-backdrop">
+      <button>close</button>
+    </form>
+  </dialog>
 
   <!-- Main Content -->
   <main class="container mx-auto px-4 pt-20">
@@ -1029,6 +1119,79 @@
     modal.addEventListener("close", () => {
       videoPlayer.src = "";
     });
+
+    // Settings functions
+    function openSettings() {
+      document.getElementById('settings_modal').showModal();
+      document.getElementById('profile-dropdown').classList.add('hidden');
+    }
+
+    function setTheme(theme) {
+      if (theme === 'system') {
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
+      } else {
+        document.documentElement.setAttribute('data-theme', theme);
+      }
+      localStorage.setItem('theme', theme);
+    }
+
+    function saveSettings() {
+      // Get all settings values
+      const videoQuality = document.querySelector('select').value;
+      const notifications = {
+        newVideos: document.querySelector('input[type="checkbox"]:nth-of-type(1)').checked,
+        channelUpdates: document.querySelector('input[type="checkbox"]:nth-of-type(2)').checked,
+        comments: document.querySelector('input[type="checkbox"]:nth-of-type(3)').checked
+      };
+      const privacy = {
+        activityStatus: document.querySelector('input[type="checkbox"]:nth-of-type(4)').checked,
+        watchHistory: document.querySelector('input[type="checkbox"]:nth-of-type(5)').checked
+      };
+      const language = document.querySelectorAll('select')[1].value;
+
+      // Save settings to localStorage
+      const settings = {
+        videoQuality,
+        notifications,
+        privacy,
+        language
+      };
+      localStorage.setItem('userSettings', JSON.stringify(settings));
+
+      // Show success message
+      const toast = document.createElement('div');
+      toast.className = 'toast toast-top toast-end';
+      toast.innerHTML = `
+        <div class="alert alert-success">
+          <span>Settings saved successfully!</span>
+        </div>
+      `;
+      document.body.appendChild(toast);
+      setTimeout(() => toast.remove(), 3000);
+
+      // Close modal
+      document.getElementById('settings_modal').close();
+    }
+
+    // Load saved settings
+    function loadSettings() {
+      const savedSettings = localStorage.getItem('userSettings');
+      if (savedSettings) {
+        const settings = JSON.parse(savedSettings);
+        // Apply saved settings
+        document.querySelector('select').value = settings.videoQuality;
+        document.querySelectorAll('input[type="checkbox"]')[0].checked = settings.notifications.newVideos;
+        document.querySelectorAll('input[type="checkbox"]')[1].checked = settings.notifications.channelUpdates;
+        document.querySelectorAll('input[type="checkbox"]')[2].checked = settings.notifications.comments;
+        document.querySelectorAll('input[type="checkbox"]')[3].checked = settings.privacy.activityStatus;
+        document.querySelectorAll('input[type="checkbox"]')[4].checked = settings.privacy.watchHistory;
+        document.querySelectorAll('select')[1].value = settings.language;
+      }
+    }
+
+    // Load settings when page loads
+    document.addEventListener('DOMContentLoaded', loadSettings);
   </script>
 </body>
 </html>
