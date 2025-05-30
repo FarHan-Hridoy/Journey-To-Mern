@@ -522,35 +522,130 @@
       background: rgba(0, 0, 0, 0.1);
     }
 
-    /* Clock Animation */
-    #current-time {
-      animation: pulseGlow 2s infinite;
+    /* Updated Search Bar Styles */
+    .join {
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .join:focus-within {
+      transform: scale(1.02);
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .join-item {
+      border: 1px solid var(--border-color, #e5e7eb);
+      background: var(--base-200);
+      height: 2.5rem;
+    }
+
+    .join-item:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px var(--primary-focus);
+    }
+
+    #search-button {
+      padding: 0 1rem;
+      border-left: none;
+      transition: all 0.3s ease;
+      min-height: 2.5rem;
+    }
+
+    #search-button:hover {
+      background: var(--base-300);
+      transform: scale(1.05);
+    }
+
+    #search-input {
+      padding-left: 1rem;
+      font-size: 1rem;
+      height: 2.5rem;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 1024px) {
+      .join {
+        max-width: 100%;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 0.5rem;
+      }
+      
+      .join {
+        width: 100%;
+      }
+      
+      #search-input {
+        font-size: 0.875rem;
+      }
+      
+      .navbar .pl-4 {
+        padding-left: 0.5rem;
+      }
+      
+      .navbar .pr-4 {
+        padding-right: 0.5rem;
+      }
+
+      #browser-timer {
+        font-size: 0.6rem;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .join {
+        width: 100%;
+      }
+    }
+
+    /* Timer Styles */
+    #browser-timer {
+      font-size: 0.75rem;
     }
   </style>
 </head>
 <body>
   <!-- Header -->
   <header class="navbar bg-base-100 shadow-lg fixed top-0 z-50">
-    <div class="flex-1">
-      <a class="btn btn-ghost normal-case text-xl">
+    <div class="flex items-center">
+      <a class="btn btn-ghost normal-case text-xl pl-4">
         <span class="text-red-600 font-bold">PH</span>Tube
       </a>
     </div>
-    <!-- Add Search Bar -->
-    <div class="flex-none w-96">
-      <div class="join w-full">
-        <input type="text" placeholder="Search videos..." class="input input-bordered join-item w-full input-sm" id="search-input" />
-        <button class="btn btn-sm join-item rounded-r-full" id="search-button">
+    <!-- Centered Search Bar -->
+    <div class="flex-1 flex justify-center px-4">
+      <div class="join w-full max-w-xl">
+        <input type="text" placeholder="Search videos..." class="input input-bordered join-item w-full input-sm rounded-l-full" id="search-input" />
+        <button class="btn btn-sm join-item rounded-r-full bg-base-200 hover:bg-base-300" id="search-button">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
           </svg>
         </button>
       </div>
     </div>
-    <div class="flex-none gap-4 items-center">
+    <div class="flex-none gap-2 items-center pr-4">
       <div class="flex items-center gap-2">
-        <div class="text-sm opacity-70" id="current-time"></div>
-        <!-- Add Notification Button -->
+        <!-- Three-dot menu button -->
+        <div class="relative">
+          <button class="btn btn-ghost btn-circle" id="three-dot-button">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
+            </svg>
+          </button>
+          <!-- Three-dot Dropdown -->
+          <div id="three-dot-dropdown" class="hidden absolute right-0 mt-2 w-48 bg-base-200 rounded-lg shadow-lg z-50">
+            <ul class="py-2">
+              <li><a href="#" class="block px-4 py-2 hover:bg-base-300">Create Studio</a></li>
+              <li><a href="#" class="block px-4 py-2 hover:bg-base-300" onclick="openSettings()">Settings</a></li>
+              <li><a href="#" class="block px-4 py-2 hover:bg-base-300">Help</a></li>
+            </ul>
+          </div>
+        </div>
+        <!-- Notification Button -->
         <div class="relative">
           <button class="btn btn-ghost btn-circle" id="notification-button">
             <div class="indicator">
@@ -606,10 +701,15 @@
             </div>
           </div>
         </div>
-        <div class="avatar online cursor-pointer" id="profile-icon">
-          <div class="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-            <img src="https://ui-avatars.com/api/?name=Guest&background=random" id="profile-image" />
+        <!-- Profile Icon and Timer -->
+        <div class="flex flex-col items-center gap-1">
+          <div class="avatar online cursor-pointer" id="profile-icon">
+            <div class="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+              <img src="https://ui-avatars.com/api/?name=Guest&background=random" id="profile-image" />
+            </div>
           </div>
+          <!-- Timer -->
+          <div class="text-xs opacity-70" id="browser-timer">00:00</div>
         </div>
       </div>
     </div>
@@ -928,21 +1028,6 @@
       updateProfileUI();
       document.getElementById('profile-dropdown').classList.add('hidden');
     }
-
-    // Add clock functionality
-    function updateClock() {
-      const now = new Date();
-      const timeString = now.toLocaleTimeString('en-US', { 
-        hour: '2-digit', 
-        minute: '2-digit',
-        hour12: true 
-      });
-      document.getElementById('current-time').textContent = timeString;
-    }
-
-    // Update clock every second
-    setInterval(updateClock, 1000);
-    updateClock(); // Initial call
 
     const modal = document.getElementById("video_modal");
     const videoPlayer = document.getElementById("video_player");
@@ -1267,6 +1352,7 @@
     notificationButton.addEventListener('click', (e) => {
       e.stopPropagation();
       notificationDropdown.classList.toggle('hidden');
+      threeDotDropdown.classList.add('hidden'); // Close three-dot dropdown
     });
 
     // Close notification dropdown when clicking outside
@@ -1284,6 +1370,48 @@
     notificationButton.addEventListener('mouseleave', () => {
       notificationButton.classList.remove('animate-bounce');
     });
+
+    // Add three-dot button functionality
+    const threeDotButton = document.getElementById('three-dot-button');
+    const threeDotDropdown = document.getElementById('three-dot-dropdown');
+
+    threeDotButton.addEventListener('click', (e) => {
+      e.stopPropagation();
+      threeDotDropdown.classList.toggle('hidden');
+      notificationDropdown.classList.add('hidden'); // Close notification dropdown
+    });
+
+    // Close three-dot dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!threeDotButton.contains(e.target) && !threeDotDropdown.contains(e.target)) {
+        threeDotDropdown.classList.add('hidden');
+      }
+    });
+
+    // Add timer functionality
+    let seconds = 0;
+    const timerDisplay = document.getElementById('browser-timer');
+
+    function updateTimer() {
+      seconds++;
+      const minutes = Math.floor(seconds / 60);
+      const remainingSeconds = seconds % 60;
+
+      const formattedTime = 
+        `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
+      
+      timerDisplay.textContent = formattedTime;
+    }
+
+    // Start timer when the page loads
+    document.addEventListener('DOMContentLoaded', () => {
+      setInterval(updateTimer, 1000);
+    });
+
+    // Add Quranic reminder alert after 5 minutes
+    setInterval(() => {
+      alert("Quranic Reminder:\n\nوَمَا الْحَيَاةُ الدُّنْيَا إِلَّا لَعِبٌ وَلَهْوٌ ۖ وَلَلدَّارُ الْآخِرَةُ خَيْرٌ لِّلَّذِينَ يَتَّقُونَ ۗ أَفَلَا تَعْقِلُونَ\n(Surah Al-An'am 6:32)\n\nAnd the life of this world is nothing but play and amusement. But the home of the Hereafter is best for those who fear God. Will you not then understand?\n\nRemember the Hereafter, as this world is temporary.");
+    }, 15000); // 15000 milliseconds = 15 seconds
   </script>
 </body>
 </html>
