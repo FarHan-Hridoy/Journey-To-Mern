@@ -28,6 +28,38 @@
       to { transform: translateX(0); opacity: 1; }
     }
 
+    @keyframes tumble {
+      0% { transform: rotate(0deg) translateY(0); }
+      25% { transform: rotate(-5deg) translateY(-5px); }
+      50% { transform: rotate(0deg) translateY(-10px); }
+      75% { transform: rotate(5deg) translateY(-5px); }
+      100% { transform: rotate(0deg) translateY(0); }
+    }
+
+    @keyframes floatHeader {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+      100% { transform: translateY(0); }
+    }
+
+    @keyframes pulseGlow {
+      0% { box-shadow: 0 0 5px rgba(255, 0, 0, 0.5); }
+      50% { box-shadow: 0 0 20px rgba(255, 0, 0, 0.8); }
+      100% { box-shadow: 0 0 5px rgba(255, 0, 0, 0.5); }
+    }
+
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+
+    @keyframes bounceIn {
+      0% { transform: scale(0.3); opacity: 0; }
+      50% { transform: scale(1.05); opacity: 0.8; }
+      70% { transform: scale(0.9); opacity: 0.9; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
     /* Animation classes */
     .animate-fade-in {
       animation: fadeIn 0.5s ease-out forwards;
@@ -44,6 +76,8 @@
     /* Video card hover effects */
     .video-card {
       transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      overflow: hidden;
     }
 
     .video-card:hover {
@@ -51,18 +85,145 @@
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     }
 
+    .video-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 0.1));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .video-card:hover::after {
+      opacity: 1;
+    }
+
     /* Category button animations */
     .btn {
       transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
     }
 
     .btn:hover {
       transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
-    /* Modal animations */
-    .modal-box {
-      animation: scaleIn 0.3s ease-out forwards;
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    .btn::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.6s ease, height 0.6s ease;
+    }
+
+    .btn:hover::after {
+      width: 300px;
+      height: 300px;
+    }
+
+    /* Search bar hover effect */
+    .join-item {
+      transition: all 0.3s ease;
+    }
+
+    .join-item:hover {
+      box-shadow: 0 0 0 2px var(--primary);
+    }
+
+    /* Profile dropdown hover effects */
+    #profile-dropdown a {
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    #profile-dropdown a::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width 0.3s ease;
+    }
+
+    #profile-dropdown a:hover::before {
+      width: 100%;
+    }
+
+    /* Modal close button hover */
+    .modal-action .btn {
+      transition: all 0.3s ease;
+    }
+
+    .modal-action .btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Channel icon hover effect */
+    .channel-icon {
+      transition: all 0.3s ease;
+    }
+
+    .channel-icon:hover {
+      transform: scale(1.1);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Video title hover effect */
+    .font-semibold {
+      transition: all 0.3s ease;
+    }
+
+    .font-semibold:hover {
+      color: var(--primary);
+      transform: translateX(5px);
+    }
+
+    /* Profile avatar hover effect */
+    .avatar {
+      transition: all 0.3s ease;
+    }
+
+    .avatar:hover {
+      transform: scale(1.1);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Search button hover effect */
+    #search-button {
+      transition: all 0.3s ease;
+    }
+
+    #search-button:hover {
+      transform: scale(1.1);
+      background: var(--primary);
+      color: white;
+    }
+
+    /* Video thumbnail hover effect */
+    .group:hover img {
+      transform: scale(1.05);
+    }
+
+    .group:hover span {
+      transform: scale(1.1);
+      background: var(--primary);
     }
 
     /* Staggered animation for video cards */
@@ -76,6 +237,295 @@
     .video-card:nth-child(4) { animation-delay: 0.4s; }
     .video-card:nth-child(5) { animation-delay: 0.5s; }
     .video-card:nth-child(6) { animation-delay: 0.6s; }
+
+    /* Islamic content specific animations */
+    .video-card[data-category="islamic"] {
+      position: relative;
+      border: 2px solid transparent;
+      background: linear-gradient(var(--card-bg), var(--card-bg)) padding-box,
+                  linear-gradient(45deg, #4CAF50, #2196F3) border-box;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .video-card[data-category="islamic"]:hover {
+      animation: tumble 1s ease-in-out;
+      transform-origin: center bottom;
+    }
+
+    .video-card[data-category="islamic"]:hover figure {
+      transform: scale(1.05) rotate(2deg);
+    }
+
+    .video-card[data-category="islamic"]:hover .channel-icon {
+      animation: tumble 1s ease-in-out;
+    }
+
+    .video-card[data-category="islamic"]:hover .font-semibold {
+      color: #4CAF50;
+      transform: translateX(10px);
+    }
+
+    .video-card[data-category="islamic"]::before {
+      content: '🕌';
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 1.5rem;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 1;
+    }
+
+    .video-card[data-category="islamic"]:hover::before {
+      opacity: 1;
+    }
+
+    /* Islamic content decorative elements */
+    .video-card[data-category="islamic"]::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0c16.569 0 30 13.431 30 30 0 16.569-13.431 30-30 30C13.431 60 0 46.569 0 30 0 13.431 13.431 0 30 0zm0 5C16.193 5 5 16.193 5 30s11.193 25 25 25 25-11.193 25-25S43.807 5 30 5zm0 10c8.284 0 15 6.716 15 15s-6.716 15-15 15-15-6.716-15-15 6.716-15 15-15z' fill='%234CAF50' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    .video-card[data-category="islamic"] figure {
+      position: relative;
+    }
+
+    .video-card[data-category="islamic"] figure::before {
+      content: '☪️';
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-size: 1.5rem;
+      z-index: 2;
+      opacity: 0.8;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .video-card[data-category="islamic"] figure::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, rgba(76, 175, 80, 0.1), rgba(33, 150, 243, 0.1));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .video-card[data-category="islamic"]:hover figure::after {
+      opacity: 1;
+    }
+
+    .video-card[data-category="islamic"] .channel-icon {
+      border: 2px solid #4CAF50;
+      padding: 2px;
+    }
+
+    .video-card[data-category="islamic"] .font-semibold {
+      position: relative;
+      padding-left: 20px;
+    }
+
+    .video-card[data-category="islamic"] .font-semibold::before {
+      content: '🕌';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1rem;
+      opacity: 0.7;
+    }
+
+    /* Enhanced Animations */
+    @keyframes floatHeader {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+      100% { transform: translateY(0); }
+    }
+
+    @keyframes pulseGlow {
+      0% { box-shadow: 0 0 5px rgba(255, 0, 0, 0.5); }
+      50% { box-shadow: 0 0 20px rgba(255, 0, 0, 0.8); }
+      100% { box-shadow: 0 0 5px rgba(255, 0, 0, 0.5); }
+    }
+
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+
+    @keyframes bounceIn {
+      0% { transform: scale(0.3); opacity: 0; }
+      50% { transform: scale(1.05); opacity: 0.8; }
+      70% { transform: scale(0.9); opacity: 0.9; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    /* Header Animations */
+    .navbar {
+      animation: floatHeader 3s ease-in-out infinite;
+    }
+
+    .navbar .btn-ghost {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .navbar .btn-ghost::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+      );
+      animation: shimmer 2s infinite;
+    }
+
+    /* PH Tube Logo Animation */
+    .text-red-600 {
+      animation: pulseGlow 2s infinite;
+    }
+
+    /* Search Bar Animation */
+    .join-item {
+      transition: all 0.3s ease;
+    }
+
+    .join-item:focus-within {
+      transform: scale(1.02);
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Category Buttons Animation */
+    .btn[data-category] {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn[data-category]::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.6s ease, height 0.6s ease;
+    }
+
+    .btn[data-category]:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+
+    /* Video Card Enhanced Animations */
+    .video-card {
+      animation: bounceIn 0.6s ease-out forwards;
+      opacity: 0;
+    }
+
+    .video-card:hover .channel-icon {
+      animation: bounceIn 0.5s ease-out;
+    }
+
+    .video-card:hover figure img {
+      transform: scale(1.1) rotate(2deg);
+    }
+
+    /* Profile Section Animations */
+    .avatar {
+      transition: all 0.3s ease;
+    }
+
+    .avatar:hover {
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    /* Modal Animation Enhancement */
+    .modal-box {
+      animation: bounceIn 0.5s ease-out;
+    }
+
+    /* Loading Animation for Video Thumbnails */
+    .video-card figure {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .video-card figure::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+      );
+      animation: shimmer 2s infinite;
+    }
+
+    /* Staggered Animation for Video Grid */
+    .video-card:nth-child(1) { animation-delay: 0.1s; }
+    .video-card:nth-child(2) { animation-delay: 0.2s; }
+    .video-card:nth-child(3) { animation-delay: 0.3s; }
+    .video-card:nth-child(4) { animation-delay: 0.4s; }
+    .video-card:nth-child(5) { animation-delay: 0.5s; }
+    .video-card:nth-child(6) { animation-delay: 0.6s; }
+    .video-card:nth-child(7) { animation-delay: 0.7s; }
+    .video-card:nth-child(8) { animation-delay: 0.8s; }
+    .video-card:nth-child(9) { animation-delay: 0.9s; }
+    .video-card:nth-child(10) { animation-delay: 1.0s; }
+
+    /* Search Button Animation */
+    #search-button {
+      transition: all 0.3s ease;
+    }
+
+    #search-button:hover {
+      transform: scale(1.1) rotate(5deg);
+      background: var(--primary);
+      color: white;
+    }
+
+    /* Profile Dropdown Animation */
+    #profile-dropdown {
+      animation: bounceIn 0.3s ease-out;
+    }
+
+    #profile-dropdown a {
+      transition: all 0.3s ease;
+    }
+
+    #profile-dropdown a:hover {
+      transform: translateX(10px);
+      background: rgba(0, 0, 0, 0.1);
+    }
+
+    /* Clock Animation */
+    #current-time {
+      animation: pulseGlow 2s infinite;
+    }
   </style>
 </head>
 <body>
@@ -522,10 +972,12 @@
       filteredVideos.forEach((video, index) => {
         const card = document.createElement("div");
         card.className = "video-card bg-base-200 rounded-lg overflow-hidden cursor-pointer animate-fade-in";
+        card.setAttribute('data-category', video.category);
         card.style.animationDelay = `${index * 0.1}s`;
         card.innerHTML = `
           <figure class="relative group">
-            <img src="https://i.ytimg.com/vi/${video.videoId}/maxresdefault.jpg" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105" />
+            <img src="https://i.ytimg.com/vi/${video.videoId}/maxresdefault.jpg" 
+                 class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105" />
             <span class="absolute bottom-2 right-2 bg-black bg-opacity-80 text-white px-2 py-1 rounded text-sm transform transition-transform duration-300 group-hover:scale-110">▶️</span>
           </figure>
           <div class="p-4">
