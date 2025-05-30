@@ -1408,9 +1408,34 @@
       setInterval(updateTimer, 1000);
     });
 
-    // Add Quranic reminder alert after 5 minutes
+    // Add Quranic reminder alert every 15 seconds, cycling through different reminders
+    const reminders = [
+      {
+        text: "وَمَا الْحَيَاةُ الدُّنْيَا إِلَّا لَعِبٌ وَلَهْوٌ ۖ وَلَلدَّارُ الْآخِرَةُ خَيْرٌ لِّلَّذِينَ يَتَّقُونَ ۗ أَفَلَا تَعْقِلُونَ\n(Surah Al-An'am 6:32)",
+        translation: "And the life of this world is nothing but play and amusement. But the home of the Hereafter is best for those who fear God. Will you not then understand?\n\nRemember the Hereafter, as this world is temporary."
+      },
+      {
+        text: "إِنَّمَا أَنتُم بِالدُّنْيَا مُسْتَعْمَلُونَ وَبِالْآخِرَةِ مُخَلَّدُونَ",
+        translation: "You are only employed in this world, but you will live forever in the Hereafter."
+      },
+      {
+        text: "The Prophet (ﷺ) said: 'Take benefit of five before five: your youth before your old age, your health before your sickness, your wealth before your poverty, your free time before you are preoccupied, and your life before your death.' (Hadith)\n",
+        translation: "Value your time and blessings before they are gone."
+      },
+      {
+        text: "وَالْعَصْرِ إِنَّ الْإِنسَانَ لَفِي خُسْرٍ\n(Surah Al-Asr 103:1-2)",
+        translation: "By time, indeed, mankind is in loss."
+      },
+      {
+        text: "The Prophet (ﷺ) said: 'There are two blessings which many people lose: (They are) Health and free time for doing good.' (Bukhari)",
+        translation: "Use your health and time wisely."
+      }
+    ];
+    let reminderIndex = 0;
     setInterval(() => {
-      alert("Quranic Reminder:\n\nوَمَا الْحَيَاةُ الدُّنْيَا إِلَّا لَعِبٌ وَلَهْوٌ ۖ وَلَلدَّارُ الْآخِرَةُ خَيْرٌ لِّلَّذِينَ يَتَّقُونَ ۗ أَفَلَا تَعْقِلُونَ\n(Surah Al-An'am 6:32)\n\nAnd the life of this world is nothing but play and amusement. But the home of the Hereafter is best for those who fear God. Will you not then understand?\n\nRemember the Hereafter, as this world is temporary.");
+      const r = reminders[reminderIndex];
+      alert(`Reminder:\n\n${r.text}\n\n${r.translation}`);
+      reminderIndex = (reminderIndex + 1) % reminders.length;
     }, 15000); // 15000 milliseconds = 15 seconds
   </script>
 </body>
