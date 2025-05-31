@@ -1102,6 +1102,10 @@
           </svg>
         </button>
       </div>
+      <!-- Add external link below the next reminder button -->
+      <div class="text-center mt-2">
+        <a id="external-reminder-link" href="#" target="_blank" class="text-primary hover:underline text-sm">Read more from source</a>
+      </div>
       <div class="modal-action">
         <form method="dialog">
           <button class="btn">Close</button>
@@ -2028,13 +2032,15 @@
     const reminderTextElement = document.getElementById('reminder-text');
     const reminderLinkElement = document.getElementById('reminder-link');
     const reminderTitleElement = document.getElementById('reminder-title');
+    const externalReminderLink = document.getElementById('external-reminder-link'); // Get the new link element
 
     setInterval(() => {
       const r = reminders[reminderIndex];
       // Update modal content
       reminderTitleElement.textContent = "Reminder"; // Generic title or use r.text.split('\n')[0] if preferred
       reminderTextElement.textContent = `${r.text}\n\n${r.translation}`;
-      reminderLinkElement.href = r.link;
+      // Update the external link href
+      externalReminderLink.href = r.link;
 
       // Play audio
       if (r.audio) {
@@ -2088,8 +2094,8 @@
         // Update modal content with the next reminder
         reminderTitleElement.textContent = "Reminder"; // Keep title generic
         reminderTextElement.textContent = `${nextReminder.text}\n\n${nextReminder.translation}`;
-        // Note: The external link will still be available if you want to add a separate link icon later
-        // reminderLinkElement.href = nextReminder.link; 
+        // Update the external link href when cycling through reminders
+        externalReminderLink.href = nextReminder.link;
 
         // Play audio for the next reminder
         if (nextReminder.audio) {
