@@ -1095,6 +1095,13 @@
       <div id="reminder-link-container">
         <a id="reminder-link" href="#" target="_blank" class="text-primary hover:underline text-sm">Read more</a>
       </div>
+      <div class="flex justify-center mt-4">
+        <button id="next-reminder-btn" class="btn btn-sm btn-primary">
+          Next Reminder <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
+        </button>
+      </div>
       <div class="modal-action">
         <form method="dialog">
           <button class="btn">Close</button>
@@ -1989,6 +1996,31 @@
         translation: "Use your health and time wisely.",
         audio: "https://example.com/audio/reminder5.mp3", // Replace with actual audio URL
         link: "https://sunnah.com/bukhari/81/6" // Replace with actual link (example Hadith)
+      },
+      // Added more reminders
+      {
+        text: "قُلْ هَلْ يَسْتَوِي الَّذِينَ يَعْلَمُونَ وَالَّذِينَ لَا يَعْلَمُونَ ۗ إِنَّمَا يَتَذَكَّرُ أُولُو الْأَلْبَابِ\n(Surah Az-Zumar 39:9)",
+        translation: "Say, \"Are those who know equal to those who do not know?\" Only they will remember [who are] possessed of understanding.\n\nSeek knowledge, for it elevates you.",
+        audio: "https://example.com/audio/reminder6.mp3", // Placeholder audio
+        link: "https://quran.com/39/9" // Placeholder link
+      },
+      {
+        text: "The Messenger of Allah (ﷺ) said: \"Indeed, gentleness is not in anything except that it adorns it, and it is not removed from anything except that it mars it.\" (Muslim)",
+        translation: "Be kind and gentle in all your dealings.",
+        audio: "https://example.com/audio/reminder7.mp3", // Placeholder audio
+        link: "https://sunnah.com/muslim/45/128" // Placeholder link
+      },
+      {
+        text: "يَا أَيُّهَا الَّذِينَ آمَنُوا اسْتَعِينُوا بِالصَّبْرِ وَالصَّلَاةِ ۚ إِنَّ اللَّهَ مَعَ الصَّابِرِينَ\n(Surah Al-Baqarah 2:153)",
+        translation: "O you who have believed, seek help through patience and prayer. Indeed, Allah is with the patient.\n\nBe patient and seek strength in prayer.",
+        audio: "https://example.com/audio/reminder8.mp3", // Placeholder audio
+        link: "https://quran.com/2/153" // Placeholder link
+      },
+      {
+        text: "The Messenger of Allah (ﷺ) said: \"Truthfulness leads to righteousness, and righteousness leads to Paradise.\" (Bukhari)",
+        translation: "Always be truthful and honest.",
+        audio: "https://example.com/audio/reminder9.mp3", // Placeholder audio
+        link: "https://sunnah.com/bukhari/78/48" // Placeholder link
       }
     ];
     let reminderIndex = 0;
@@ -2024,6 +2056,46 @@
     // Add event listener to close reminder modal when clicking the backdrop
     reminderModal.querySelector('.modal-backdrop button').addEventListener('click', () => {
       reminderModal.close();
+    });
+
+    // Modify the 'Read more' link to show the next reminder
+    reminderLinkElement.addEventListener('click', (e) => {
+      e.preventDefault(); // Prevent default link behavior
+
+      // Move to the next reminder
+      reminderIndex = (reminderIndex + 1) % reminders.length;
+      const nextReminder = reminders[reminderIndex];
+
+      // Update modal content with the next reminder
+      reminderTitleElement.textContent = "Reminder"; // Keep title generic
+      reminderTextElement.textContent = `${nextReminder.text}\n\n${nextReminder.translation}`;
+      reminderLinkElement.href = nextReminder.link; // Update the external link as well
+
+      // Play audio for the next reminder
+      if (nextReminder.audio) {
+        const audio = new Audio(nextReminder.audio);
+        audio.play().catch(e => console.error("Error playing audio:", e));
+      }
+    });
+
+    // Attach click listener to the new next reminder button
+    const nextReminderBtn = document.getElementById('next-reminder-btn');
+    nextReminderBtn.addEventListener('click', () => {
+        // Move to the next reminder
+        reminderIndex = (reminderIndex + 1) % reminders.length;
+        const nextReminder = reminders[reminderIndex];
+
+        // Update modal content with the next reminder
+        reminderTitleElement.textContent = "Reminder"; // Keep title generic
+        reminderTextElement.textContent = `${nextReminder.text}\n\n${nextReminder.translation}`;
+        // Note: The external link will still be available if you want to add a separate link icon later
+        // reminderLinkElement.href = nextReminder.link; 
+
+        // Play audio for the next reminder
+        if (nextReminder.audio) {
+          const audio = new Audio(nextReminder.audio);
+          audio.play().catch(e => console.error("Error playing audio:", e));
+        }
     });
 
     // Add click handlers for left sidebar links
