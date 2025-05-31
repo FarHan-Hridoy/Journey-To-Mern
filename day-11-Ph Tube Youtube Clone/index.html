@@ -606,6 +606,151 @@
     #browser-timer {
       font-size: 0.75rem;
     }
+
+    /* Add styles for the new left sidebar */
+    .left-sidebar {
+      position: fixed;
+      left: 0;
+      top: 60px; /* Adjust based on header height */
+      bottom: 0;
+      width: 70px; /* Narrow width */
+      background: var(--base-100);
+      padding: 1rem 0.5rem;
+      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+      z-index: 30;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      overflow-y: auto; /* Add scrolling if content exceeds height */
+    }
+
+    .left-sidebar a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.25rem;
+      color: var(--base-content);
+      text-decoration: none;
+      font-size: 0.75rem;
+      transition: opacity 0.3s ease;
+    }
+
+    .left-sidebar a:hover {
+      opacity: 0.7;
+    }
+
+    .left-sidebar .icon-placeholder {
+        width: 24px;
+        height: 24px;
+        background: var(--base-300);
+        border-radius: 4px;
+    }
+
+    .left-sidebar img {
+      width: 24px;
+      height: 24px;
+    }
+
+    /* Add styles for active sidebar item on click */
+    .left-sidebar a.active {
+      background-color: var(--base-300); /* Or another distinct color */
+      color: var(--primary); /* Highlight text color */
+      border-left: 3px solid var(--primary); /* Add a left border */
+      padding-left: calc(0.5rem - 3px); /* Adjust padding to keep alignment */
+    }
+
+    .left-sidebar a.active .icon-placeholder,
+    .left-sidebar a.active img {
+        filter: brightness(1.2); /* Make icons brighter when active */
+    }
+
+    /* Adjust main content to make space for the left sidebar */
+    main.container {
+      margin-left: 70px; /* Match left sidebar width */
+    }
+
+    /* Responsive adjustments for left sidebar and main content */
+    @media (max-width: 768px) {
+      .left-sidebar {
+        width: 60px; /* Slightly narrower sidebar on small screens */
+        padding: 0.5rem 0.25rem; /* Reduce padding */
+        gap: 0.5rem; /* Reduce gap between items */
+      }
+
+      .left-sidebar span {
+         font-size: 0.6rem; /* Smaller text in sidebar */
+      }
+
+      main.container {
+        margin-left: 60px; /* Adjust main content margin */
+      }
+
+      .left-sidebar .icon-placeholder,
+      .left-sidebar img {
+        width: 20px; /* Smaller icons */
+        height: 20px;
+      }
+    }
+
+    /* Reminder Modal Styles */
+    #reminder_modal {
+      background: var(--base-300);
+      padding: 1rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      text-align: center;
+    }
+
+    #reminder-text {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      color: var(--info);
+      animation: fadeIn 1s ease-out;
+    }
+
+    #reminder-link-container {
+      margin-top: 1rem;
+    }
+
+    #reminder-link {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: bold;
+      padding: 0.5rem 1rem;
+      border-radius: 0.25rem;
+      background: var(--base-200);
+      transition: background 0.3s ease;
+    }
+
+    #reminder-link:hover {
+      background: var(--base-300);
+    }
+
+    #audio-error {
+      color: var(--error);
+      font-weight: bold;
+      margin-top: 0.5rem;
+    }
+
+    /* Hover effect for left sidebar items */
+    .left-sidebar a:hover {
+      opacity: 0.7;
+    }
+
+    /* Active styles for left sidebar items */
+    .left-sidebar a.active {
+      background-color: var(--base-300);
+      color: var(--primary);
+      border-left: 3px solid var(--primary);
+      padding-left: calc(0.5rem - 3px);
+    }
+
+    .left-sidebar a.active .icon-placeholder,
+    .left-sidebar a.active img {
+      filter: brightness(1.2);
+    }
   </style>
 </head>
 <body>
@@ -714,6 +859,41 @@
       </div>
     </div>
   </header>
+
+  <!-- Add the new left sidebar -->
+  <div class="left-sidebar">
+    <a href="#" class="sidebar-item" data-category="all">
+        <div class="icon-placeholder"></div>
+        <span>Home</span>
+    </a>
+    <a href="#" class="sidebar-item" data-category="shorts">
+        <div class="icon-placeholder"></div>
+        <span>Shorts</span>
+    </a>
+    <a href="#" class="sidebar-item">
+        <div class="icon-placeholder"></div>
+        <span>Subscriptions</span>
+    </a>
+     <a href="#" class="sidebar-item">
+        <div class="icon-placeholder"></div>
+        <span>You</span>
+    </a>
+
+    <div class="divider"></div> <!-- Optional divider -->
+
+    <a href="https://www.youtube.com" target="_blank" class="social-icon" title="YouTube">
+      <img src="https://www.youtube.com/favicon.ico" alt="YouTube">
+      <span>YouTube</span>
+    </a>
+    <a href="https://www.google.com" target="_blank" class="social-icon" title="Google">
+      <img src="https://www.google.com/favicon.ico" alt="Google">
+      <span>Google</span>
+    </a>
+    <a href="https://www.w3schools.com" target="_blank" class="social-icon" title="W3Schools">
+      <img src="https://www.w3schools.com/favicon.ico" alt="W3Schools">
+      <span>W3Schools</span>
+    </a>
+  </div>
 
   <!-- Login Modal -->
   <dialog id="login_modal" class="modal">
@@ -873,6 +1053,12 @@
       <button class="btn btn-ghost" data-category="islamic">Islamic Content</button>
       <button class="btn btn-ghost" data-category="quran">Quran Recitation</button>
       <button class="btn btn-ghost" data-category="stories">Prophet Stories</button>
+      <button class="btn btn-ghost" data-category="html">HTML</button>
+      <button class="btn btn-ghost" data-category="css">CSS</button>
+      <button class="btn btn-ghost" data-category="javascript">JavaScript</button>
+      <button class="btn btn-ghost" data-category="react">React</button>
+      <button class="btn btn-ghost" data-category="mongodb">MongoDB</button>
+      <button class="btn btn-ghost" data-category="projects">Projects</button>
     </div>
 
     <!-- Video Grid -->
@@ -948,7 +1134,9 @@
         card.style.animationDelay = `${index * 0.1}s`;
         card.innerHTML = `
           <figure class="relative group">
-            <img src="https://i.ytimg.com/vi/${video.videoId}/maxresdefault.jpg" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105" />
+            <img src="https://img.youtube.com/vi/${video.videoId}/maxresdefault.jpg" 
+                 onerror="this.onerror=null; this.src='https://img.youtube.com/vi/${video.videoId}/hqdefault.jpg';"
+                 class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105" />
             <span class="absolute bottom-2 right-2 bg-black bg-opacity-80 text-white px-2 py-1 rounded text-sm transform transition-transform duration-300 group-hover:scale-110">▶️</span>
           </figure>
           <div class="p-4">
@@ -965,6 +1153,26 @@
           </div>
         `;
         card.addEventListener("click", () => {
+          // Add video to watch history
+          const videoId = video.videoId; // Get video ID from clicked video
+          const existingIndex = watchHistory.findIndex(item => item.videoId === videoId);
+          
+          if (existingIndex !== -1) {
+            // If video is already in history, remove it to add it again at the beginning
+            watchHistory.splice(existingIndex, 1);
+          }
+          
+          // Add video to the beginning of the history
+          watchHistory.unshift(video);
+
+          // Trim history to max size
+          if (watchHistory.length > MAX_HISTORY_ITEMS) {
+            watchHistory = watchHistory.slice(0, MAX_HISTORY_ITEMS);
+          }
+
+          // Optional: Update notification dropdown and count here or when dropdown is opened
+          updateNotificationDropdown();
+
           videoTitle.textContent = video.title;
           videoViews.textContent = video.views;
           videoDescription.textContent = video.description;
@@ -987,7 +1195,14 @@
     document.querySelectorAll('[data-category]').forEach(button => {
       button.addEventListener('click', () => {
         searchInput.value = '';
-        // ... existing category button code ...
+        // Add code to filter and render videos based on category
+        const category = button.dataset.category;
+        renderVideos(category);
+
+        // Update active button style
+        document.querySelectorAll('[data-category]').forEach(btn => btn.classList.remove('btn-primary'));
+        button.classList.add('btn-primary');
+        button.classList.remove('btn-ghost');
       });
     });
 
@@ -1073,12 +1288,13 @@
         category: "islamic"
       },
       {
-        title: "Surah Yasin Recitation",
+        title: "Surah Yasin Recitation (Short)",
         channel: "Quran Reciter",
         views: "3M views • 2 weeks ago",
         description: "Beautiful recitation of Surah Yasin.",
         videoId: "bx5EOcX3YcA",
-        category: "quran"
+        category: "quran",
+        type: "short"
       },
       {
         title: "React.js for Beginners",
@@ -1089,12 +1305,13 @@
         category: "tutorials"
       },
       {
-        title: "The Story of Prophet Yusuf (AS)",
+        title: "The Story of Prophet Yusuf (AS) (Short)",
         channel: "Islamic Stories",
         views: "2.9M views • 3 weeks ago",
         description: "Animated story of Prophet Yusuf.",
         videoId: "TlObLz0wJAk",
-        category: "stories"
+        category: "stories",
+        type: "short"
       },
       {
         title: "Build REST APIs with Node.js",
@@ -1207,17 +1424,221 @@
         description: "Soothing recitation of Surah Al-Mulk.",
         videoId: "N5pK7E_0C6M",
         category: "quran"
+      },
+      {
+        title: "Build 5 Projects with HTML, CSS, and JavaScript",
+        channel: "freeCodeCamp.org",
+        views: "4.5M views • 10 months ago",
+        description: "Hands-on projects for beginners.",
+        videoId: "3PHXrp3_SJE",
+        category: "projects"
+      },
+      {
+        title: "MERN Stack E-commerce Project | Full Tutorial",
+        channel: "Dev ED",
+        views: "1.8M views • 1 year ago",
+        description: "Build a complete MERN e-commerce app.",
+        videoId: "fu4khz_Zkvg",
+        category: "mern"
+      },
+      {
+        title: "Build a Social Media App - MERN Stack Full Course",
+        channel: "JavaScript Mastery",
+        views: "1.2M views • 8 months ago",
+        description: "Full course on building a MERN social app.",
+        videoId: "cvjwETM_Igw",
+        category: "mern"
+      },
+      {
+        title: "Build a Blog App with MERN Stack",
+        channel: "The Net Ninja",
+        views: "950K views • 1 year ago",
+        description: "Learn to build a MERN blog application.",
+        videoId: "jD7Fynz1ATg",
+        category: "mern"
+      },
+      {
+        title: "Responsive Website Design with HTML, CSS & JavaScript",
+        channel: "Online Tutorials",
+        views: "3.8M views • 1 year ago",
+        description: "Create responsive websites.",
+        videoId: "Tabl_Vg_wjw",
+        category: "projects"
+      },
+      {
+        title: "React Portfolio Website Tutorial",
+        channel: "Bedimcode",
+        views: "700K views • 7 months ago",
+        description: "Build a personal portfolio using React.",
+        videoId: "hQpcJMWlUX0",
+        category: "projects"
+      },
+      {
+        title: "Build a YouTube Clone with HTML, CSS & JavaScript",
+        channel: "Code with Ania Kubów",
+        views: "1.2M views • 1 year ago",
+        description: "Create a YouTube clone from scratch using vanilla JavaScript.",
+        videoId: "Kkht2mwSL_I",
+        category: "projects"
+      },
+      {
+        title: "YouTube Clone with React & Tailwind CSS",
+        channel: "Sonny Sangha",
+        views: "850K views • 8 months ago",
+        description: "Build a modern YouTube clone using React and Tailwind CSS.",
+        videoId: "1NrHkjlWVhM",
+        category: "projects"
+      },
+      {
+        title: "Full Stack YouTube Clone - MERN Stack",
+        channel: "Clever Programmer",
+        views: "1.5M views • 1 year ago",
+        description: "Build a complete YouTube clone with MERN stack including video upload.",
+        videoId: "fu4khz_Zkvg",
+        category: "mern"
+      },
+      {
+        title: "YouTube Clone with Next.js & TypeScript",
+        channel: "Code with Antonio",
+        views: "650K views • 6 months ago",
+        description: "Modern YouTube clone using Next.js 13 and TypeScript.",
+        videoId: "cvjwETM_Igw",
+        category: "projects"
+      },
+      {
+        title: "YouTube Clone with Firebase & React",
+        channel: "Web Dev Simplified",
+        views: "950K views • 1 year ago",
+        description: "Build a YouTube clone with React and Firebase backend.",
+        videoId: "jD7Fynz1ATg",
+        category: "projects"
+      },
+      {
+        title: "YouTube Clone with Redux Toolkit",
+        channel: "Dev Ed",
+        views: "780K views • 9 months ago",
+        description: "Learn Redux Toolkit by building a YouTube clone.",
+        videoId: "Tabl_Vg_wjw",
+        category: "projects"
+      },
+      {
+        title: "YouTube Clone with Material UI",
+        channel: "JavaScript Mastery",
+        views: "1.1M views • 7 months ago",
+        description: "Create a beautiful YouTube clone using Material UI components.",
+        videoId: "hQpcJMWlUX0",
+        category: "projects"
+      },
+      {
+        title: "YouTube Clone with GraphQL & Apollo",
+        channel: "Ben Awad",
+        views: "520K views • 1 year ago",
+        description: "Build a YouTube clone using GraphQL and Apollo Client.",
+        videoId: "GrgjY2k4S2I",
+        category: "projects"
+      },
+      {
+        title: "YouTube Clone with Socket.io",
+        channel: "Traversy Media",
+        views: "890K views • 1 year ago",
+        description: "Add real-time features to your YouTube clone with Socket.io.",
+        videoId: "1Rs2ND1ryFg",
+        category: "projects"
+      },
+      {
+        title: "YouTube Clone with AWS S3",
+        channel: "Academind",
+        views: "720K views • 8 months ago",
+        description: "Learn to handle video uploads with AWS S3 in your YouTube clone.",
+        videoId: "ocMwl1FuPFA",
+        category: "projects"
+      },
+      {
+        title: "YouTube Clone with Authentication",
+        channel: "Net Ninja",
+        views: "1.3M views • 1 year ago",
+        description: "Add user authentication to your YouTube clone.",
+        videoId: "A6bN5yv_c3Y",
+        category: "projects"
+      },
+      {
+        title: "YouTube Clone with Comments System",
+        channel: "Dev Ed",
+        views: "680K views • 6 months ago",
+        description: "Implement a real-time comments system in your YouTube clone.",
+        videoId: "ExcRbA7s_2E",
+        category: "projects"
+      },
+      {
+        title: "YouTube Clone with Playlists",
+        channel: "Code with Ania Kubów",
+        views: "550K views • 5 months ago",
+        description: "Add playlist functionality to your YouTube clone.",
+        videoId: "3PHXrp3_SJE",
+        category: "projects"
+      },
+      {
+        title: "YouTube Clone with Search & Filters",
+        channel: "Web Dev Simplified",
+        views: "920K views • 1 year ago",
+        description: "Implement advanced search and filtering in your YouTube clone.",
+        videoId: "fu4khz_Zkvg",
+        category: "projects"
+      },
+      {
+        title: "YouTube Clone with Responsive Design",
+        channel: "Kevin Powell",
+        views: "1.4M views • 1 year ago",
+        description: "Make your YouTube clone fully responsive for all devices.",
+        videoId: "cvjwETM_Igw",
+        category: "projects"
+      },
+      {
+        title: "Node JS Full Course 2025 | Microservices, Redis, CI CD, Docker, VPS Hosting | Hostinger ...",
+        channel: "Sangam Mukherjee",
+        views: "122K views • 5 months ago",
+        description: "Learn Node.js and related technologies in this comprehensive course.",
+        videoId: "_f7h6xQXiLA",
+        category: "tutorials"
+      },
+      {
+        title: "Master Next JS 14 Complete Basic to Advance",
+        channel: "Geeky Shows",
+        views: "98K views • 1 year ago",
+        description: "Complete guide to Next.js 14",
+        videoId: "yN8VXmncvRU",
+        category: "tutorials"
+      },
+      {
+        title: "CSS Tutorial – Full Course for Beginners",
+        channel: "freeCodeCamp.org",
+        views: "2.4M views • 2 years ago",
+        description: "Learn CSS from scratch.",
+        videoId: "OXGznpKZ_sA",
+        category: "tutorials"
+      },
+      {
+        title: "React JS Full Course 2023 | Build an App and Master React in 13 Hours",
+        channel: "Clever Programmer",
+        views: "3.1M views • 1 year ago",
+        description: "Master React by building a real app.",
+        videoId: "A6bN5yv_c3Y",
+        category: "tutorials"
       }
     ];
+
+    // Add a watch history array
+    let watchHistory = [];
+    const MAX_HISTORY_ITEMS = 10; // Limit the history to the last 10 videos
 
     const grid = document.getElementById("video-grid");
     let currentCategory = "tutorials";
 
     function renderVideos(category = "tutorials") {
       grid.innerHTML = "";
-      let filteredVideos = category === "all" 
-        ? videoData 
-        : videoData.filter(video => video.category === category);
+      let filteredVideos = category === "all"
+        ? videoData
+        : videoData.filter(video => video.category === category || (category === "tutorials" && ["html", "css", "javascript", "react", "mongodb"].includes(video.category)));
 
       // Sort videos to show programming content first
       if (category === "all") {
@@ -1225,7 +1646,7 @@
           const programmingCategories = ['tutorials', 'mern'];
           const aIsProgramming = programmingCategories.includes(a.category);
           const bIsProgramming = programmingCategories.includes(b.category);
-          
+
           if (aIsProgramming && !bIsProgramming) return -1;
           if (!aIsProgramming && bIsProgramming) return 1;
           return 0;
@@ -1239,7 +1660,8 @@
         card.style.animationDelay = `${index * 0.1}s`;
         card.innerHTML = `
           <figure class="relative group">
-            <img src="https://i.ytimg.com/vi/${video.videoId}/maxresdefault.jpg" 
+            <img src="https://img.youtube.com/vi/${video.videoId}/maxresdefault.jpg" 
+                 onerror="this.onerror=null; this.src='https://img.youtube.com/vi/${video.videoId}/hqdefault.jpg';"
                  class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105" />
             <span class="absolute bottom-2 right-2 bg-black bg-opacity-80 text-white px-2 py-1 rounded text-sm transform transition-transform duration-300 group-hover:scale-110">▶️</span>
           </figure>
@@ -1257,6 +1679,26 @@
           </div>
         `;
         card.addEventListener("click", () => {
+          // Add video to watch history
+          const videoId = video.videoId; // Get video ID from clicked video
+          const existingIndex = watchHistory.findIndex(item => item.videoId === videoId);
+          
+          if (existingIndex !== -1) {
+            // If video is already in history, remove it to add it again at the beginning
+            watchHistory.splice(existingIndex, 1);
+          }
+          
+          // Add video to the beginning of the history
+          watchHistory.unshift(video);
+
+          // Trim history to max size
+          if (watchHistory.length > MAX_HISTORY_ITEMS) {
+            watchHistory = watchHistory.slice(0, MAX_HISTORY_ITEMS);
+          }
+
+          // Optional: Update notification dropdown and count here or when dropdown is opened
+          updateNotificationDropdown();
+
           videoTitle.textContent = video.title;
           videoViews.textContent = video.views;
           videoDescription.textContent = video.description;
@@ -1267,22 +1709,65 @@
       });
     }
 
-    // Add click handlers for category buttons
-    document.querySelectorAll('[data-category]').forEach(button => {
-      button.addEventListener('click', () => {
-        // Update button styles
-        document.querySelectorAll('[data-category]').forEach(btn => {
-          btn.classList.remove('btn-primary');
-          btn.classList.add('btn-ghost');
-        });
-        button.classList.remove('btn-ghost');
-        button.classList.add('btn-primary');
+    // Create a new function to render a specific array of videos
+    function renderVideosFiltered(videosToRender) {
+      grid.innerHTML = ""; // Clear existing videos
+      videosToRender.forEach((video, index) => {
+        const card = document.createElement("div");
+        // Use existing card structure and event listener
+        card.className = "video-card bg-base-200 rounded-lg overflow-hidden cursor-pointer animate-fade-in";
+        card.setAttribute('data-category', video.category); // Keep data-category for styling if needed
+        card.style.animationDelay = `${index * 0.1}s`;
+        card.innerHTML = `
+          <figure class="relative group">
+            <img src="https://img.youtube.com/vi/${video.videoId}/maxresdefault.jpg" 
+                 onerror="this.onerror=null; this.src='https://img.youtube.com/vi/${video.videoId}/hqdefault.jpg';"
+                 class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105" />
+            <span class="absolute bottom-2 right-2 bg-black bg-opacity-80 text-white px-2 py-1 rounded text-sm transform transition-transform duration-300 group-hover:scale-110">▶️</span>
+          </figure>
+          <div class="p-4">
+            <div class="flex gap-3">
+              <div class="channel-icon w-10 h-10 rounded-full overflow-hidden transition-transform duration-300 hover:scale-110">
+                <img src="https://ui-avatars.com/api/?name=${encodeURIComponent(video.channel)}&background=random" />
+              </div>
+              <div>
+                <h3 class="font-semibold transition-colors duration-300 hover:text-primary">${video.title}</h3>
+                <p class="text-sm opacity-70">${video.channel}</p>
+                <p class="text-sm opacity-70">${video.views}</p>
+              </div>
+            </div>
+          </div>
+        `;
+        card.addEventListener("click", () => {
+           // Add video to watch history (for filtered view)
+          const videoId = video.videoId; // Get video ID from clicked video
+          const existingIndex = watchHistory.findIndex(item => item.videoId === videoId);
+          
+          if (existingIndex !== -1) {
+            // If video is already in history, remove it to add it again at the beginning
+            watchHistory.splice(existingIndex, 1);
+          }
+          
+          // Add video to the beginning of the history
+          watchHistory.unshift(video);
 
-        // Update videos
-        currentCategory = button.dataset.category;
-        renderVideos(currentCategory);
+          // Trim history to max size
+          if (watchHistory.length > MAX_HISTORY_ITEMS) {
+            watchHistory = watchHistory.slice(0, MAX_HISTORY_ITEMS);
+          }
+
+           // Optional: Update notification dropdown and count here or when dropdown is opened
+          updateNotificationDropdown();
+
+          videoTitle.textContent = video.title;
+          videoViews.textContent = video.views;
+          videoDescription.textContent = video.description;
+          videoPlayer.src = `https://www.youtube.com/embed/${video.videoId}?autoplay=1`;
+          modal.showModal();
+        });
+        grid.appendChild(card);
       });
-    });
+    }
 
     // Initial render with programming content
     renderVideos('tutorials');
@@ -1311,13 +1796,13 @@
       // Get all settings values
       const videoQuality = document.querySelector('select').value;
       const notifications = {
-        newVideos: document.querySelector('input[type="checkbox"]:nth-of-type(1)').checked,
-        channelUpdates: document.querySelector('input[type="checkbox"]:nth-of-type(2)').checked,
-        comments: document.querySelector('input[type="checkbox"]:nth-of-type(3)').checked
+        newVideos: document.querySelector('input[type="checkbox"]')[0].checked,
+        channelUpdates: document.querySelector('input[type="checkbox"]')[1].checked,
+        comments: document.querySelector('input[type="checkbox"]')[2].checked
       };
       const privacy = {
-        activityStatus: document.querySelector('input[type="checkbox"]:nth-of-type(4)').checked,
-        watchHistory: document.querySelector('input[type="checkbox"]:nth-of-type(5)').checked
+        activityStatus: document.querySelector('input[type="checkbox"]')[3].checked,
+        watchHistory: document.querySelector('input[type="checkbox"]')[4].checked
       };
       const language = document.querySelectorAll('select')[1].value;
 
@@ -1367,9 +1852,55 @@
     // Add notification button functionality
     const notificationButton = document.getElementById('notification-button');
     const notificationDropdown = document.getElementById('notification-dropdown');
+    const notificationBadge = notificationButton.querySelector('.indicator-item');
+    const notificationContent = notificationDropdown.querySelector('.max-h-96');
+
+    // Function to update the notification dropdown content with watch history
+    function updateNotificationDropdown() {
+        notificationContent.innerHTML = ''; // Clear existing content
+
+        if (watchHistory.length === 0) {
+            notificationContent.innerHTML = '<div class="p-4 text-sm opacity-70">No watch history yet.</div>';
+        } else {
+            watchHistory.forEach(video => {
+                const historyItem = document.createElement('div');
+                historyItem.className = 'p-4 hover:bg-base-300 cursor-pointer transition-colors duration-200';
+                historyItem.innerHTML = `
+                    <div class="flex gap-3 items-center">
+                        <div class="w-16 h-10 overflow-hidden rounded">
+                            <img src="https://img.youtube.com/vi/${video.videoId}/default.jpg" class="w-full h-full object-cover" />
+                        </div>
+                        <div>
+                            <p class="text-sm font-semibold">${video.title}</p>
+                            <p class="text-xs opacity-70">${video.channel}</p>
+                        </div>
+                    </div>
+                `;
+                 // Add click listener to open the video modal from history
+                historyItem.addEventListener('click', () => {
+                    videoTitle.textContent = video.title;
+                    videoViews.textContent = video.views;
+                    videoDescription.textContent = video.description;
+                    videoPlayer.src = `https://www.youtube.com/embed/${video.videoId}?autoplay=1`;
+                    modal.showModal();
+                     notificationDropdown.classList.add('hidden'); // Close dropdown after clicking
+                });
+                notificationContent.appendChild(historyItem);
+            });
+        }
+
+        // Update badge count
+        notificationBadge.textContent = watchHistory.length;
+        if (watchHistory.length === 0) {
+            notificationBadge.classList.add('hidden');
+        } else {
+             notificationBadge.classList.remove('hidden');
+        }
+    }
 
     notificationButton.addEventListener('click', (e) => {
       e.stopPropagation();
+      updateNotificationDropdown(); // Update content when opening dropdown
       notificationDropdown.classList.toggle('hidden');
       threeDotDropdown.classList.add('hidden'); // Close three-dot dropdown
     });
@@ -1416,9 +1947,9 @@
       const minutes = Math.floor(seconds / 60);
       const remainingSeconds = seconds % 60;
 
-      const formattedTime = 
+      const formattedTime =
         `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
-      
+
       timerDisplay.textContent = formattedTime;
     }
 
@@ -1483,7 +2014,7 @@
       reminderModal.showModal();
 
       reminderIndex = (reminderIndex + 1) % reminders.length;
-    }, 15000); // 15000 milliseconds = 15 seconds
+    }, 15000); // Changed interval to 15 seconds
 
     // Add event listener to close reminder modal when clicking the close button within the modal-action div
     reminderModal.querySelector('.modal-action button').addEventListener('click', () => {
@@ -1493,6 +2024,25 @@
     // Add event listener to close reminder modal when clicking the backdrop
     reminderModal.querySelector('.modal-backdrop button').addEventListener('click', () => {
       reminderModal.close();
+    });
+
+    // Add click handlers for left sidebar links
+    document.querySelectorAll('.left-sidebar a[data-category]').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault(); // Prevent default link behavior
+        const category = link.dataset.category;
+        if (category === 'shorts') {
+            // Filter for videos marked as type: "short"
+            const shortsVideos = videoData.filter(video => video.type === 'short');
+            renderVideosFiltered(shortsVideos); // Use a new function for filtered data
+        } else {
+            // For other categories (like 'all'), use the existing renderVideos logic
+             renderVideos(category); // This will filter by the 'category' property
+        }
+        // Optional: Update active style for left sidebar links
+        document.querySelectorAll('.left-sidebar a').forEach(navLink => navLink.classList.remove('active'));
+        link.classList.add('active');
+      });
     });
   </script>
 </body>
