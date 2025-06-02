@@ -258,7 +258,7 @@ This repository contains a series of progressive projects that demonstrate the e
   - Progress Tracking
   - Mode Switching
 
-### [Day 11: PH Tube - YouTube Clone](day-11-Ph%20Tube%20Youtube%20Clone)
+### [Day 11: PH Tube - YouTube Clone](day-11-Ph-Tube-Youtube-Clone)
 
 - **Core Features:**
   - Real-time Search with Debouncing
@@ -375,7 +375,7 @@ journey-to-mern/
 ├── day-8-event-loop-playground/
 ├── day-9-promises-async-await/
 ├── day-9.10-timer/
-├── day-11-Ph Tube Youtube Clone/
+├── day-11-Ph-Tube-Youtube-Clone/
 └── javascript-mern-journey-summary/
 ```
 
