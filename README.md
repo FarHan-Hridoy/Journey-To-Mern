@@ -8,7 +8,7 @@ This repository contains a series of progressive projects that demonstrate the e
 
 ## 🎯 Project Modules
 
-### [Day 1: DOM & API Fundamentals](./day-1-dom-api-practice)
+### [Day 1: DOM & API Fundamentals](day-1-dom-api-practice)
 
 - **Core Concepts:**
   - Asynchronous JavaScript with `fetch()`
@@ -22,7 +22,7 @@ This repository contains a series of progressive projects that demonstrate the e
   - CSS3 Modern Features
   - RESTful API Integration
 
-### [Day 2: Random User Explorer](./day-2-random-user)
+### [Day 2: Random User Explorer](day-2-random-user)
 
 - **Features:**
   - Random User API Integration
@@ -36,7 +36,7 @@ This repository contains a series of progressive projects that demonstrate the e
   - Responsive Design Principles
   - Modern CSS Grid/Flexbox
 
-### [Day 3: API Debug Playground](./day-3-api-debug-playground)
+### [Day 3: API Debug Playground](day-3-api-debug-playground)
 
 - **Features:**
   - Islamic Names Explorer
@@ -50,7 +50,7 @@ This repository contains a series of progressive projects that demonstrate the e
   - CSS Animations
   - Responsive Design Patterns
 
-### [Day 4: CRUD Operations](./day-4-crud-app)
+### [Day 4: CRUD Operations](day-4-crud-app)
 
 - **Features:**
   - Islamic History Explorer
@@ -64,7 +64,7 @@ This repository contains a series of progressive projects that demonstrate the e
   - State Management
   - Modern UI Components
 
-### [Day 5: Async/Await Implementation](./day-5-async-await-random-users)
+### [Day 5: Async/Await Implementation](day-5-async-await-random-users)
 
 - **Features:**
   - Random User Dashboard
@@ -78,7 +78,7 @@ This repository contains a series of progressive projects that demonstrate the e
   - Event Loop Optimization
   - Error Boundary Pattern
 
-### [Day 6: Advanced Async Dashboard](./day-6-async-dashboard)
+### [Day 6: Advanced Async Dashboard](day-6-async-dashboard)
 
 - **Features:**
   - Career Development Dashboard
@@ -94,7 +94,7 @@ This repository contains a series of progressive projects that demonstrate the e
   - Responsive Grid Layout
   - Glassmorphism Effects
 
-### [Day 7: JavaScript Engine & Execution Context](./day-7-javascript-engine-and-execution-context)
+### [Day 7: JavaScript Engine & Execution Context](day-7-javascript-engine-and-execution-context)
 
 - **Features:**
   - JavaScript Engine Visualization
@@ -109,7 +109,7 @@ This repository contains a series of progressive projects that demonstrate the e
   - Call Stack Operations
   - Scope Chain Visualization
 
-### [Day 8: Event Loop Playground](./day-8-event-loop-playground)
+### [Day 8: Event Loop Playground](day-8-event-loop-playground)
 
 - **Features:**
   - Event Loop Visualizer
@@ -124,7 +124,7 @@ This repository contains a series of progressive projects that demonstrate the e
   - Asynchronous Operations
   - Queue Visualization
 
-### [Day 9: Promises & Async/Await Playground](./day-9-promises-async-await)
+### [Day 9: Promises & Async/Await Playground](day-9-promises-async-await)
 
 - **Features:**
   - Promise Chain Visualizer
@@ -139,7 +139,7 @@ This repository contains a series of progressive projects that demonstrate the e
   - Promise States
   - Chain Visualization
 
-### [Day 9.10: Timer](./day-9.10-timer)
+### [Day 9.10: Timer](day-9.10-timer)
 
 - **Features:**
   - Multiple Timer Modes
@@ -154,7 +154,7 @@ This repository contains a series of progressive projects that demonstrate the e
   - Progress Tracking
   - Mode Switching
 
-### [Day 11: PH Tube - YouTube Clone](./day-11-Ph%20Tube%20Youtube%20Clone)
+### [Day 11: PH Tube - YouTube Clone](day-11-Ph%20Tube%20Youtube%20Clone)
 
 - **Core Features:**
   - Real-time Search with Debouncing
