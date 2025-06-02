@@ -210,17 +210,18 @@ This repository contains a series of daily projects that demonstrate the progres
 
 ```bash
 journey-to-mern/
-├── [day-1-dom-api-practice](./day-1-dom-api-practice)
-├── [day-2-random-user](./day-2-random-user)
-├── [day-3-api-debug-playground](./day-3-api-debug-playground)
-├── [day-4-crud-operations](./day-4-crud-operations)
-├── [day-5-async-await](./day-5-async-await)
-├── [day-6-async-dashboard](./day-6-async-dashboard)
-├── [day-7-javascript-engine-and-execution-context](./day-7-javascript-engine-and-execution-context)
-├── [day-8-event-loop-playground](./day-8-event-loop-playground)
-├── [day-9-promises-async-await](./day-9-promises-async-await)
-├── [day-9.10-timer](./day-9.10-timer)
-└── [day-11-ph-tube](./day-11-Ph%20Tube%20Youtube%20Clone)
+├── day-1-dom-api-practice/
+├── day-2-random-user/
+├── day-3-api-debug-playground/
+├── day-4-crud-app/
+├── day-5-async-await-random-users/
+├── day-6-async-dashboard/
+├── day-7-javascript-engine-and-execution-context/
+├── day-8-event-loop-playground/
+├── day-9-promises-async-await/
+├── day-9.10-timer/
+├── day-11-Ph Tube Youtube Clone/
+└── javascript-mern-journey-summary/
 ```
 
 ## 🚀 Upcoming Modules
@@ -231,6 +232,9 @@ journey-to-mern/
 - [MongoDB](https://www.mongodb.com/) database integration
 - [Express.js](https://expressjs.com/) API development
 - Full MERN stack application
+- Authentication and Authorization
+- Real-time features with Socket.io
+- Deployment and DevOps practices
 
 ## 👨‍💻 Author
 
@@ -245,6 +249,9 @@ MERN Stack Developer in Training
 - Implement responsive and accessible designs
 - Develop full-stack applications with MERN
 - Follow industry best practices and coding standards
+- Build scalable and maintainable applications
+- Implement security best practices
+- Master deployment and DevOps workflows
 
 ## 🤝 Contributing
 
@@ -254,6 +261,8 @@ Feel free to contribute to this learning journey by:
 - Suggesting enhancements
 - Sharing best practices
 - Providing feedback
+- Creating pull requests
+- Improving documentation
 
 ## 🔗 Useful Links
 
@@ -263,6 +272,8 @@ Feel free to contribute to this learning journey by:
 - [MongoDB Documentation](https://docs.mongodb.com/)
 - [Express.js Guide](https://expressjs.com/guide/routing.html)
 - [React Documentation](https://reactjs.org/docs/getting-started.html)
+- [Socket.io Documentation](https://socket.io/docs/v4/)
+- [Docker Documentation](https://docs.docker.com/)
 
 ## 📄 License
 
