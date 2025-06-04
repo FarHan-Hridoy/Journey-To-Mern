@@ -357,6 +357,95 @@
       margin-bottom: 40px;
       font-style: italic;
     }
+
+    /* Statistics Section Styles */
+    .statistics {
+      margin: 40px 0;
+      padding: 20px;
+      background: var(--card-bg);
+      border-radius: 8px;
+      border: 1px solid var(--card-border);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .stat-card {
+      background: var(--bg-color);
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    }
+
+    .stat-number {
+      font-size: 2.5em;
+      font-weight: bold;
+      color: var(--accent-color);
+      margin: 10px 0;
+    }
+
+    .stat-card p {
+      color: var(--secondary-color);
+      margin: 0;
+    }
+
+    /* Progress Tracking Section Styles */
+    .progress-tracking {
+      margin: 40px 0;
+      padding: 20px;
+      background: var(--card-bg);
+      border-radius: 8px;
+      border: 1px solid var(--card-border);
+    }
+
+    .progress-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .progress-card {
+      background: var(--bg-color);
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .progress-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    }
+
+    .progress-bar {
+      background-color: #f0f0f0;
+      border-radius: 10px;
+      height: 20px;
+      margin: 10px 0;
+      overflow: hidden;
+    }
+
+    .progress {
+      background-color: var(--accent-color);
+      height: 100%;
+      transition: width 0.3s ease;
+    }
+
+    .progress-card p {
+      color: var(--secondary-color);
+      margin: 0;
+    }
   </style>
 </head>
 <body>
@@ -657,6 +746,68 @@
         <li><a href="https://your-live-link-day-9-10.com" target="_blank">Day 9.10: Timer Application</a></li>
         <li><a href="https://your-live-link-day-11.com" target="_blank">Day 11: PH Tube - YouTube Clone</a></li>
       </ul>
+    </div>
+
+    <!-- Project Statistics Section -->
+    <div class="statistics">
+      <h2>📊 Project Statistics</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <h3>Total Projects</h3>
+          <div class="stat-number">11</div>
+          <p>Completed Projects</p>
+        </div>
+        <div class="stat-card">
+          <h3>Code Lines</h3>
+          <div class="stat-number">5,000+</div>
+          <p>Lines of Code</p>
+        </div>
+        <div class="stat-card">
+          <h3>Learning Hours</h3>
+          <div class="stat-number">100+</div>
+          <p>Hours Spent</p>
+        </div>
+        <div class="stat-card">
+          <h3>Skills Mastered</h3>
+          <div class="stat-number">15+</div>
+          <p>Technical Skills</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Progress Tracking Section -->
+    <div class="progress-tracking">
+      <h2>🎯 Learning Progress</h2>
+      <div class="progress-grid">
+        <div class="progress-card">
+          <h3>JavaScript Fundamentals</h3>
+          <div class="progress-bar">
+            <div class="progress" style="width: 90%"></div>
+          </div>
+          <p>90% Complete</p>
+        </div>
+        <div class="progress-card">
+          <h3>DOM Manipulation</h3>
+          <div class="progress-bar">
+            <div class="progress" style="width: 85%"></div>
+          </div>
+          <p>85% Complete</p>
+        </div>
+        <div class="progress-card">
+          <h3>Async Programming</h3>
+          <div class="progress-bar">
+            <div class="progress" style="width: 80%"></div>
+          </div>
+          <p>80% Complete</p>
+        </div>
+        <div class="progress-card">
+          <h3>API Integration</h3>
+          <div class="progress-bar">
+            <div class="progress" style="width: 75%"></div>
+          </div>
+          <p>75% Complete</p>
+        </div>
+      </div>
     </div>
 
     <!-- Technical Resources Section -->
