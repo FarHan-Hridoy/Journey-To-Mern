@@ -37,6 +37,7 @@
       padding: 40px;
       line-height: 1.6;
       transition: background-color 0.3s, color 0.3s;
+      position: relative;
     }
 
     /* Theme Switch Styles */
@@ -494,9 +495,182 @@
     .skill-card li {
       margin-bottom: 5px;
     }
+
+    /* Scroll Progress Bar */
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 4px;
+      background: var(--accent-color);
+      z-index: 1000;
+      transition: width 0.1s ease;
+    }
+
+    /* Floating Action Button */
+    .fab {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 60px;
+      height: 60px;
+      background: var(--accent-color);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+
+    .fab:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+    }
+
+    .fab i {
+      color: var(--bg-color);
+      font-size: 24px;
+    }
+
+    /* Animated Skill Badges */
+    .skill-badge {
+      position: relative;
+      display: inline-block;
+      padding: 8px 16px;
+      margin: 5px;
+      background: var(--card-bg);
+      border-radius: 20px;
+      font-size: 14px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      overflow: hidden;
+    }
+
+    .skill-badge::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,0.2),
+        transparent
+      );
+      transition: 0.5s;
+    }
+
+    .skill-badge:hover::before {
+      left: 100%;
+    }
+
+    .skill-badge:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    /* Quick Navigation Menu */
+    .quick-nav {
+      position: fixed;
+      left: 30px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--card-bg);
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      z-index: 1000;
+    }
+
+    .quick-nav a {
+      display: block;
+      color: var(--text-color);
+      text-decoration: none;
+      padding: 8px 12px;
+      margin: 5px 0;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+
+    .quick-nav a:hover {
+      background: var(--accent-color);
+      color: var(--bg-color);
+    }
+
+    /* Achievement Badges */
+    .achievement-badge {
+      position: relative;
+      display: inline-block;
+      width: 80px;
+      height: 80px;
+      margin: 10px;
+      border-radius: 50%;
+      background: var(--card-bg);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      transition: all 0.3s ease;
+    }
+
+    .achievement-badge:hover {
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    .achievement-badge i {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 32px;
+      color: var(--accent-color);
+    }
+
+    /* Achievement Tooltip */
+    .achievement-badge::after {
+      content: attr(data-title);
+      position: absolute;
+      bottom: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--card-bg);
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-size: 12px;
+      white-space: nowrap;
+      opacity: 0;
+      transition: all 0.3s ease;
+      pointer-events: none;
+    }
+
+    .achievement-badge:hover::after {
+      opacity: 1;
+      bottom: -40px;
+    }
   </style>
 </head>
 <body>
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress"></div>
+
+  <!-- Quick Navigation Menu -->
+  <div class="quick-nav">
+    <a href="#day1">Day 1</a>
+    <a href="#day2">Day 2</a>
+    <a href="#day3">Day 3</a>
+    <a href="#day4">Day 4</a>
+    <a href="#day5">Day 5</a>
+    <a href="#resources">Resources</a>
+  </div>
+
+  <!-- Floating Action Button -->
+  <div class="fab" onclick="scrollToTop()">
+    <i>↑</i>
+  </div>
+
   <!-- Theme Switch Component -->
   <div class="theme-switch-wrapper">
     <span class="slider-icon">🌙</span>
@@ -995,6 +1169,25 @@
         </div>
       </div>
     </div>
+
+    <!-- Achievement Badges Section -->
+    <div class="achievements">
+      <h2>🏆 Achievements</h2>
+      <div class="achievement-badges">
+        <div class="achievement-badge" data-title="JavaScript Master">
+          <i>🎯</i>
+        </div>
+        <div class="achievement-badge" data-title="API Expert">
+          <i>📡</i>
+        </div>
+        <div class="achievement-badge" data-title="DOM Ninja">
+          <i>⚡</i>
+        </div>
+        <div class="achievement-badge" data-title="Async Pro">
+          <i>🔄</i>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- Theme Toggle Script -->
@@ -1017,6 +1210,40 @@
         html.setAttribute('data-theme', 'dark');
         localStorage.setItem('theme', 'dark');
       }
+    });
+
+    // Scroll Progress Bar
+    window.addEventListener('scroll', () => {
+      const scrollProgress = document.querySelector('.scroll-progress');
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      const scrolled = window.scrollY;
+      const progress = (scrolled / scrollable) * 100;
+      scrollProgress.style.width = progress + '%';
+    });
+
+    // Scroll to Top Function
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+
+    // Animate skill badges on scroll
+    const skillBadges = document.querySelectorAll('.skill-badge');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    });
+
+    skillBadges.forEach(badge => {
+      badge.style.opacity = '0';
+      badge.style.transform = 'translateY(20px)';
+      observer.observe(badge);
     });
   </script>
 </body>
